@@ -1,5 +1,5 @@
 #include "ili9341.h"
- #include <unistd.h>
+#include <unistd.h>
 
 ili9341::ili9341() {
 	int fd = wiringPiSPISetup(spiChannel, spiSpeed);
@@ -15,9 +15,9 @@ ili9341::ili9341() {
         	pinMode(LED, OUTPUT);
         }
 
-Gpio.digitalWrite(RST, OFF);
+	digitalWrite(RST, 0);
         usleep(11000);
-        digitalWrite(RST, ON);
+        digitalWrite(RST, 1);
         
 	LCD_Write_COM(0xCB);  
         LCD_Write_DATA(0x39); 
