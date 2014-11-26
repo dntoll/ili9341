@@ -9,7 +9,12 @@ public:
 
 	void clearScreen();
 	void setBrightness(unsigned char lightLevel);
+	void setColor(int x, int y, int r, int g, int b)
+
+	static const int WIDTH = 320;
+	static const int HEIGHT = 240;
 private:
+	void Address_set( int x1, int y1, int x2, int y2);
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
 	static const unsigned char DC   = 4;// # gpio pin 16 = wiringpi no. 4 (BCM 23)
@@ -24,7 +29,7 @@ private:
 
 	static const int spiChannel = 0;
 	static const int spiSpeed = 32000000;
-	static const int buffersize = 320*240*2;
+	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 	unsigned char drawBuffer[buffersize];
 	
 
