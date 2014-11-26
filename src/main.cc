@@ -5,7 +5,8 @@ using namespace std;
 
 int main()
 {
-	ili9341 inst;
+	ili9341 inst();
+	inst.clearScreen();
 	cout << "Hello World \n";
 	return 0;
 }
