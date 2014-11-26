@@ -89,7 +89,7 @@ ili9341::ili9341() {
 	setBrightness(0);
 }
 
-void ili9341::setBrightness(unsigned char lightLevel) {
+void ili9341::setBrightness(unsigned char led_value) {
 	if ( LED == 1) {
 	        if (0 <= led_value && led_value < 1023) {
 	        	pwmWrite(LED, led_value);
