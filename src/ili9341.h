@@ -1,5 +1,6 @@
 #pragma once
 #include <wiringPiSPI.h>
+#include <wiringPi.h>
 
 class ili9341 {
 
