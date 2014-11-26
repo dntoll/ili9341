@@ -106,7 +106,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 
 void ili9341::clearScreen() {
 	for(int i = 0;i < buffersize; i++)
-		drawBuffer[i] =  0x00;
+		drawBuffer[i] =  0xF0;
 }
 
 void ili9341::LCD_Write_DATA(unsigned char data) {
@@ -141,7 +141,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	//push buffer
 	Address_set(0, 0, 240, 320);
 	digitalWrite(DC, 1);
-	if (wiringPiSPIDataRW(spiChannel, drawBuffer, buffersize) == -1) {
+	if (wiringPiSPIDataRW(spiChannel, drawBuffer, 1024) == -1) {
 		printf("spi failed wiringPiSPIDataRW");
 	}
 }
