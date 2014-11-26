@@ -4,7 +4,7 @@
 ili9341::ili9341() {
 	int fd = wiringPiSPISetup(spiChannel, spiSpeed);
         if (fd <= -1) {
-            throw new Exception("SPI setup failed");
+            throw new exception("SPI setup failed");
         }
 	wiringPiSetup();
 	pinMode(RST, OUTPUT);
