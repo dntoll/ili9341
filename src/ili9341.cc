@@ -1,10 +1,13 @@
 #include "ili9341.h"
 #include <unistd.h>
+#include <stdio.h>      /* printf, fopen */
+#include <stdlib.h>     /* exit, EXIT_FAILURE */
 
 ili9341::ili9341() {
 	int fd = wiringPiSPISetup(spiChannel, spiSpeed);
         if (fd <= -1) {
-            
+             printf ("Error wiringPiSPISetup");
+	    exit (EXIT_FAILURE);
         }
 	wiringPiSetup();
 	pinMode(RST, OUTPUT);
