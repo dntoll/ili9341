@@ -109,10 +109,17 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::LCD_Write_DATA(unsigned char data) {
+	digitalWrite(DC, 1);
+	if (wiringPiSPIDataRW(spiChannel, &data, 1) == -1) {
+		printf("spi failed lcd_data");
+	}
 }
 
 void ili9341::LCD_Write_COM(unsigned char com) {
-
+	digitalWrite(DC, 0);
+	if (wiringPiSPIDataRW(spiChannel, &com, 1) == -1) {
+		printf("spi failed lcd_cmd");
+	}
 }
 
 
