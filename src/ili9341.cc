@@ -132,8 +132,8 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	
 	if (x < WIDTH && y < HEIGHT) {
 		int index = x * WIDTH + y;
-		drawBuffer[index*2] = (byte) bch;
-		drawBuffer[index*2+1] = (byte) bcl;
+		drawBuffer[index*2] = (unsigned char) bch;
+		drawBuffer[index*2+1] = (unsigned char) bcl;
 	}
 	/*LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);*/

@@ -9,7 +9,7 @@ public:
 
 	void clearScreen();
 	void setBrightness(unsigned char lightLevel);
-	void setColor(int x, int y, int r, int g, int b)
+	void setColor(int x, int y, int r, int g, int b);
 
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;
