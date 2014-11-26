@@ -146,7 +146,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	int numIterations = buffersize / 1024;
 
 	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = &drawBuffer	
+		unsigned char *p = (unsigned char *)&drawBuffer;	
 		if (wiringPiSPIDataRW(spiChannel, p + i * 1024, 1024) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
