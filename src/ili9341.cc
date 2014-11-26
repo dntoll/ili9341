@@ -100,6 +100,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 	        else
 	        	digitalWrite(LED, 1);
 	}
+	sleep(1);
 	
 }
 
