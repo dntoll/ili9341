@@ -9,5 +9,7 @@ int main()
 	inst.setBrightness(255);
 	inst.clearScreen();
 	cout << "Hello World \n";
+
+	inst.setBrightness(0);
 	return 0;
 }
