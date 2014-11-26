@@ -143,8 +143,11 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	Address_set(0, 0, 240, 320);
 	digitalWrite(DC, 1);
 
-	for (int i = 0; i< 10; i++) {	
-		if (wiringPiSPIDataRW(spiChannel, drawBuffer, 1024) == -1) {
+	int numIterations = buffersize / 1024;
+
+	for (int i = 0; i< numIterations; i++) {
+		unsigned char p* = &drawBuffer	
+		if (wiringPiSPIDataRW(spiChannel, p + i * 1024, 1024) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
 	}
