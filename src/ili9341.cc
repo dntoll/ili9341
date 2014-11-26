@@ -114,6 +114,7 @@ void ili9341::LCD_Write_DATA(unsigned char data) {
 	if (wiringPiSPIDataRW(spiChannel, &data, 1) == -1) {
 		printf("spi failed lcd_data");
 	}
+	
 }
 
 void ili9341::LCD_Write_COM(unsigned char com) {
@@ -141,9 +142,13 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	//push buffer
 	Address_set(0, 0, 240, 320);
 	digitalWrite(DC, 1);
-	if (wiringPiSPIDataRW(spiChannel, drawBuffer, 1024) == -1) {
-		printf("spi failed wiringPiSPIDataRW");
+
+	for (int i = 0; i< 10; i++) {	
+		if (wiringPiSPIDataRW(spiChannel, drawBuffer, 1024) == -1) {
+			printf("spi failed wiringPiSPIDataRW");
+		}
 	}
+
 }
 
 void ili9341::Address_set( int x1, int y1, int x2, int y2)
