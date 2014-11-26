@@ -4,4 +4,4 @@ ili9341: src/main.cc
 	g++ src/main.cc -o ili9341  -lwiringPi
 
 clean: 
-	rm *.o appendall
+	rm *.o ili9341

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <wiringPiSPI.h>
 
 using namespace std;
 
