@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
 	ili9341 inst;
+	inst.setBrightness(255);
 	inst.clearScreen();
 	cout << "Hello World \n";
 	return 0;
