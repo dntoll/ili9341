@@ -152,7 +152,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	//push buffer
 	digitalWrite(DC, 1);
 
-	int maxWriteSize = 1024;
+	int maxWriteSize = 2048;
 	int bytesToWrites = width * height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 
