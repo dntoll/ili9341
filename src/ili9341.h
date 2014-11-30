@@ -31,6 +31,6 @@ private:
 	static const int spiSpeed = 32000000;
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 	unsigned char drawBuffer[buffersize];
-	
+	int fileDescriptor;
 
 };

@@ -4,8 +4,8 @@
 #include <stdlib.h>     /* exit, EXIT_FAILURE */
 
 ili9341::ili9341() {
-	int fd = wiringPiSPISetup(spiChannel, spiSpeed);
-        if (fd <= -1) {
+	fileDescriptor = wiringPiSPISetup(spiChannel, spiSpeed);
+        if (fileDescriptor <= -1) {
              printf ("Error wiringPiSPISetup");
 	    exit (EXIT_FAILURE);
         }
@@ -143,6 +143,8 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	Address_set(0, 0, 240, 320);
 	digitalWrite(DC, 1);
 
+	fwrite(drawBuffer, 1, buffersize, fileDescriptor);
+/*
 	int numIterations = buffersize / 1024;
 
 	for (int i = 0; i< numIterations; i++) {
@@ -150,7 +152,9 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 		if (wiringPiSPIDataRW(spiChannel, p + i * 1024, 1024) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
-	}
+	}*/
+
+	
 
 }
 
