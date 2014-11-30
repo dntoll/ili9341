@@ -162,6 +162,11 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 			printf("spi failed wiringPiSPIDataRW");
 		}
 	}
+	int leftovers = bytesToWrites % maxWriteSize;
+	unsigned char *p = (unsigned char *)&drawBuffer;	
+	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
+		printf("spi failed wiringPiSPIDataRW");
+	}
 }
 
 void ili9341::Address_set( int x1, int y1, int x2, int y2)
