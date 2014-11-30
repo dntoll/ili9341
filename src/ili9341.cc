@@ -130,9 +130,11 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
-	Address_set(x, y, x+1, y+1);	
-	LCD_Write_DATA(bch);
-	LCD_Write_DATA(bcl);
+	Address_set(0, 0, 240, 320);	
+	for (int i = 0; i< 1024; i++) {
+		LCD_Write_DATA(bch);
+		LCD_Write_DATA(bcl);
+	}
 }
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
