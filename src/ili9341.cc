@@ -140,11 +140,11 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	LCD_Write_DATA(bcl);*/
 	
 	//push buffer
-	Address_set(0, 0, 240, 320);
+	Address_set(100, 100, 200, 300);
 	digitalWrite(DC, 1);
 
-	write(fileDescriptor, drawBuffer, buffersize);
-/*
+	//write(fileDescriptor, drawBuffer, buffersize);
+
 	int numIterations = buffersize / 1024;
 
 	for (int i = 0; i< numIterations; i++) {
@@ -152,7 +152,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 		if (wiringPiSPIDataRW(spiChannel, p + i * 1024, 1024) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
-	}*/
+	}
 
 	
 

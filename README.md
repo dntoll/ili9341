@@ -12,3 +12,15 @@ http://henningkarlsen.com/electronics/library.php?id=51
 And
 
 http://www.elecfreaks.com/store/22-tft-lcd-tft0122sp-p-672.html
+
+Dependecies
+-----------
+WiringPi
+http://wiringpi.com/reference/spi-library/
+
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install git-core
+	git clone git://git.drogon.net/wiringPi
+	cd wiringPi
+	./build
