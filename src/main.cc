@@ -12,7 +12,7 @@ int main()
 	cout << "Write Some pixels \n";	
 
 	for (int i = 0; i < 100; i++) {
-		inst.setColor(rand()%320, rand()%240, rand()%255, rand()%255, rand()%255);
+		inst.setColor(rand()%320, rand()%240, 255, rand()%255, rand()%255);
 	}
 	cout << "Hello World \n";
 
