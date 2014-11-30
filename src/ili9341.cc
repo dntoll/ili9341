@@ -143,7 +143,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	Address_set(0, 0, 240, 320);
 	digitalWrite(DC, 1);
 
-	fwrite(drawBuffer, 1, buffersize, fileDescriptor);
+	write(fileDescriptor, drawBuffer, buffersize);
 /*
 	int numIterations = buffersize / 1024;
 
