@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include "ili9341.h"
 
 using namespace std;
