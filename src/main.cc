@@ -13,9 +13,11 @@ int main()
 	cout << "Write Some pixels \n";	
 
 	for (int i = 0; i < 100; i++) {
-		inst.setColor(rand()%320, rand()%240, rand()%255, rand()%255, rand()%255);
-		inst.fillBox(rand()%320, rand()%240, 10,10, 255,255,255);
+		inst.setColor(rand()%240, rand()%320, rand()%255, rand()%255, rand()%255);
+		
 	}
+	
+	inst.fillBox(10, 10, 100,100, 255,255,255);
 	cout << "Hello World \n";
 
 	inst.setBrightness(255);

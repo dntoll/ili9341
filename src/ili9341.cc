@@ -147,7 +147,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		drawBuffer[i*2+1] = (unsigned char) bcl;
 	}
 
-	Address_set(x, y, width, height);	
+	Address_set(x, y, x+width, y+height);	
 	
 	//push buffer
 	digitalWrite(DC, 1);
