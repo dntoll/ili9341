@@ -105,8 +105,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 }
 
 void ili9341::clearScreen() {
-	for(int i = 0;i < buffersize; i++)
-		drawBuffer[i] =  0xF0;
+	fillBox(0, 0, 240, 320, 0, 0, 0);
 }
 
 void ili9341::LCD_Write_DATA(unsigned char data) {
