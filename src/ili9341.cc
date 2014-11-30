@@ -130,32 +130,38 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
-	
-	if (x < WIDTH && y < HEIGHT) {
-		int index = x * WIDTH + y;
-		drawBuffer[index*2] = (unsigned char) bch;
-		drawBuffer[index*2+1] = (unsigned char) bcl;
+	Address_set(x, y, 1, 1);	
+	LCD_Write_DATA(bch);
+	LCD_Write_DATA(bcl);
+}
+
+void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
+{
+	// rrrrrggggggbbbbb
+	int bch=((r&248)|g>>5);
+	int bcl=((g&28)<<3|b>>3);
+	int color = (bch<<8) | bcl;
+
+	for (int i =0 ; i < width * height; i++) {
+		drawBuffer[i*2] = (unsigned char) bch;
+		drawBuffer[i*2+1] = (unsigned char) bcl;
 	}
-	/*LCD_Write_DATA(bch);
-	LCD_Write_DATA(bcl);*/
+
+	Address_set(x, y, width, height);	
 	
 	//push buffer
-	Address_set(100, 100, 200, 300);
 	digitalWrite(DC, 1);
 
-	//write(fileDescriptor, drawBuffer, buffersize);
-
-	int numIterations = buffersize / 1024;
+	int maxWriteSize = 1024;
+	int bytesToWrites = width * height * 2;
+	int numIterations = bytesToWrites / maxWriteSize;
 
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = (unsigned char *)&drawBuffer;	
-		if (wiringPiSPIDataRW(spiChannel, p + i * 1024, 1024) == -1) {
+		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
 	}
-
-	
-
 }
 
 void ili9341::Address_set( int x1, int y1, int x2, int y2)
