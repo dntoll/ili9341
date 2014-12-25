@@ -36,6 +36,7 @@ int main()
 
 		//cout << "Wrote Some pixels \n";
 		inst.flush();
+		sleep(1);
 		//sleep(1);
 		//cout << "Flushed Some pixels \n";
 	}
