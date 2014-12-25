@@ -27,8 +27,8 @@ int main()
 	cout << "Before \n";
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
-		inst.clearScreen();
-		inst.fillBox(rand()%320, rand()%240, rand()%320, rand()%240, 255, 0, 0);
+		//inst.clearScreen();
+		inst.fillBox(rand()%320, rand()%240, rand()%320, rand()%240, rand()%240, rand()%240, rand()%240);
 		inst.flush();
 		sleep(1);
 		//sleep(1);
