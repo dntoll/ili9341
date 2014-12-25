@@ -23,7 +23,7 @@ int main()
 	inst.fillBox(inst.WIDTH-25, inst.HEIGHT-50, 25, 50,255, 	0, 		255);
 
 	inst.flush();
-	/*sleep(1);
+	sleep(1);
 	cout << "Before \n";
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
@@ -38,7 +38,7 @@ int main()
 		inst.flush();
 		//sleep(1);
 		//cout << "Flushed Some pixels \n";
-	}*/
+	}
 
 	sleep(1);
 
