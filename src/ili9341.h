@@ -15,7 +15,6 @@ public:
 	void flush();
 
 	void setBrightness(unsigned char lightLevel);
-	void setColor(int x, int y, int r, int g, int b);
 	void fillBox(int x, int y, int width, int height, int r, int g, int b);
 
 	static const int WIDTH = 320;
@@ -25,7 +24,6 @@ private:
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
 	void writeToBuffer(int x, int y, int width, int height);
-	int toIndex(int x, int y);
 
 	static const unsigned char DC   = 4;// # gpio pin 16 = wiringpi no. 4 (BCM 23)
 	static const unsigned char RST  = 5;// # gpio pin 18 = wiringpi no. 5 (BCM 24)

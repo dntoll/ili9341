@@ -130,9 +130,7 @@ void ili9341::flush() {
 	}*/
 }
 
-int ili9341::toIndex(int x, int y) {
-	return (y*WIDTH + x)*2;
-}
+
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	adressSet(x, y, height, width);
@@ -185,20 +183,6 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 	if (wiringPiSPIDataRW(spiChannel, &com, 1) == -1) {
 		printf("SPI failed lcd_cmd");
 	}
-}
-
-void ili9341::setColor(int x, int y, int r, int g, int b)
-{
-	// rrrrrggggggbbbbb
-	int bch=((r&248)|g>>5);
-	int bcl=((g&28)<<3|b>>3);
-	int color = (bch<<8) | bcl;
-	adressSet(x, y, 1, 1);
-	LCD_Write_DATA(bch);
-	LCD_Write_DATA(bcl);
-	int i = toIndex(x, y);
-
-
 }
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
