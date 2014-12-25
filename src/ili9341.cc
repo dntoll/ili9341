@@ -118,7 +118,7 @@ void ili9341::test() {
 	adressSet(0, 0, 240, 320);
 
 	int maxWriteSize = 2048;
-	int bytesToWrites = width * height * 2;
+	int bytesToWrites = width * height;
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
