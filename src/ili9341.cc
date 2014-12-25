@@ -122,7 +122,7 @@ void ili9341::flush() {
 	//copy to fb
 	for (int x=0; x < WIDTH; x++) {
 		for (int y=0; y < HEIGHT; y++) {
-			int i = y * 240 + x;
+			int i = y * HEIGHT + x;
 			frontBuffer[i*2] = backBuffer[i*2];
 			frontBuffer[i*2+1] = backBuffer[i*2+1];
 		}
@@ -135,7 +135,7 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	//copy bb to wb
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
-			int from = (y+dy) * 240 + x + dx;
+			int from = (y+dy) * HEIGHT + x + dx;
 			int to = (dy) * HEIGHT + dx;
 			writeBuffer[to*2] = backBuffer[from*2];
 			writeBuffer[to*2+1] = backBuffer[from*2+1];
@@ -154,7 +154,25 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
+		//copy bb to wb
+			for (int dx=0; dx < width; dx++) {
+				for (int dy=0; dy < height; dy++) {
+					int from = (y+dy) * HEIGHT + x + dx;
+					int to = (dy) * HEIGHT + dx;
+					writeBuffer[to*2] = backBuffer[from*2];
+					writeBuffer[to*2+1] = backBuffer[from*2+1];
+				}
+			}
 	}
+	//copy bb to wb
+		for (int dx=0; dx < width; dx++) {
+			for (int dy=0; dy < height; dy++) {
+				int from = (y+dy) * HEIGHT + x + dx;
+				int to = (dy) * HEIGHT + dx;
+				writeBuffer[to*2] = backBuffer[from*2];
+				writeBuffer[to*2+1] = backBuffer[from*2+1];
+			}
+		}
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
@@ -202,11 +220,16 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
+
+
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
 			int i = (y+dy) * 240 + (x+dx);
-			backBuffer[i*2] = (unsigned char) bch;
-			backBuffer[i*2+1] = (unsigned char) bcl;
+
+			if (backBuffer[i*2] != bch && backBuffer[i*2+1] != bcl) {
+				backBuffer[i*2] = (unsigned char) bch;
+				backBuffer[i*2+1] = (unsigned char) bcl;
+			}
 		}
 	}
 	
