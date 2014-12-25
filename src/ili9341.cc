@@ -106,7 +106,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 
 void ili9341::test() {
 
-	int x = 100;
+	int x = 200;
 	int y = 0;
 	int width =  100;
 	int height = 200;
