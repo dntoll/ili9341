@@ -18,8 +18,8 @@ public:
 	void setColor(int x, int y, int r, int g, int b);
 	void fillBox(int x, int y, int width, int height, int r, int g, int b);
 
-	static const int WIDTH = 240;
-	static const int HEIGHT = 320;
+	static const int WIDTH = 320;
+	static const int HEIGHT = 240;
 private:
 	void Address_set( int x1, int y1, int x2, int y2);
 	void LCD_Write_DATA(unsigned char data);
