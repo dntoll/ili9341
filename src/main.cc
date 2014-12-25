@@ -29,7 +29,7 @@ int main()
 		//cout << "Write Some pixels \n";
 		inst.clearScreen();
 		inst.fillBox(rand()%320, rand()%240, rand()%320, rand()%240,
-				rand()%255, rand()%255, rand()%255);
+				255,0,0);
 		inst.flush();
 		sleep(1);
 		//sleep(1);
