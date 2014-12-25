@@ -117,8 +117,8 @@ void ili9341::flush() {
 	for (int x=0; x < WIDTH; x++) {
 		for (int y=0; y < HEIGHT; y++) {
 			int i = y * 240 + x;
-			frontbuffer[i*2] = backBuffer[i*2];
-			frontbuffer[i*2+1] = backBuffer[i*2+1];
+			frontBuffer[i*2] = backBuffer[i*2];
+			frontBuffer[i*2+1] = backBuffer[i*2+1];
 		}
 	}
 }
@@ -180,20 +180,21 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 {
+	dirtyRects.push_back(Rect(x, y, width, height));
 	// rrrrrggggggbbbbb
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
-	for (int x=0; x < width; x++) {
-		for (int y=0; y < height; y++) {
-			int i = y * 240 + x;
+	for (int dx=0; dx < width; dx++) {
+		for (int dy=0; dy < height; dy++) {
+			int i = dy * 240 + dx;
 			backBuffer[i*2] = (unsigned char) bch;
 			backBuffer[i*2+1] = (unsigned char) bcl;
 		}
 	}
-	dirtyRects.push_back(Rect(x, y, width, height));
 	
+
 }
 
 void ili9341::Address_set( int x1, int y1, int x2, int y2)
