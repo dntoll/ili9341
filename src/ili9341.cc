@@ -109,14 +109,14 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	//writeToBuffer(0, 0, WIDTH, HEIGHT);
+	writeToBuffer(0, 0, WIDTH, HEIGHT);
 
-	for(int i=0; i < dirtyRects.size(); i++) {
+	/*for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}
+	}*/
 	dirtyRects.clear();
 
 
@@ -133,13 +133,17 @@ void ili9341::flush() {
 
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
-	adressSet(x, y, height, width);
+
+	//this one must be called in the wrong order... but why?
+	adressSet(x, y, width, height);
 
 	//copy bb to wb
 	int index = 0;
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
-			int to =  index*2;
+			int to =  index*2;  //two bytes per pixel
+
+			//here we turn it around since i mounted it wrong
 			int bx = WIDTH - (x + dx)-1;
 			int by = y + dy;
 			if (bx >= 0 && bx < WIDTH) {
