@@ -37,6 +37,13 @@ private:
 	static const int spiChannel = 0;
 	static const int spiSpeed = 32000000;
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
+
+	struct Rect {
+		int x, y, w, h;
+	};
+
+	vector<Rect> dirtyRects;
+
 	unsigned char frontBuffer[buffersize];
 	unsigned char backBuffer[buffersize];
 	int fileDescriptor;
