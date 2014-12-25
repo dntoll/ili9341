@@ -180,12 +180,12 @@ void ili9341::writeToBuffer(int x, int y, int width, int height, unsigned char h
 			int to =  index*2;  //two bytes per pixel
 
 			//here we turn it around since i mounted it wrong
-			int bx = WIDTH - (x + dx)-1;
+			int bx = x + dx;
 			int by = y + dy;
 			if (bx >= 0 && bx < WIDTH &&
 				by >= 0 && by < HEIGHT) {
-					writeBuffer[to]   = high;//backBuffer[bx][y + dy][0];
-					writeBuffer[to+1] = low;//backBuffer[bx][y + dy][1];
+					writeBuffer[to]   = backBuffer[bx][y + dy][0];
+					writeBuffer[to+1] = backBuffer[bx][y + dy][1];
 			}
 			index++;
 		}
