@@ -114,8 +114,8 @@ void ili9341::flush() {
 
 
 	//copy to fb
-	for (int x=0; x < width; x++) {
-		for (int y=0; y < height; y++) {
+	for (int x=0; x < WIDTH; x++) {
+		for (int y=0; y < HEIGHT; y++) {
 			int i = y * 240 + x;
 			frontbuffer[i*2] = backBuffer[i*2];
 			frontbuffer[i*2+1] = backBuffer[i*2+1];
@@ -173,8 +173,8 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);
 	int i = y * 240 + x;
-	frontbuffer[i*2] = bch;
-	frontbuffer[i*2+1] = bcl;
+	frontBuffer[i*2] = bch;
+	frontBuffer[i*2+1] = bcl;
 
 }
 
