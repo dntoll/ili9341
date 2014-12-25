@@ -32,9 +32,10 @@ int main()
 	inst.flush();
 	sleep(1);
 	cout << "Before \n";
+	inst.clearScreen();
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
-		inst.clearScreen();
+
 		inst.fillBox(rand()%320, rand()%240, rand()%320, rand()%240,
 				rand()%255, rand()%255, rand()%255);
 		inst.flush();
