@@ -123,7 +123,7 @@ void ili9341::flush() {
 	//copy to fb
 	for (int x=0; x < WIDTH; x++) {
 		for (int y=0; y < HEIGHT; y++) {
-			int i = y * HEIGHT + x;
+			int i = toIndex(x, y);
 			frontBuffer[i*2] = backBuffer[i*2];
 			frontBuffer[i*2+1] = backBuffer[i*2+1];
 		}
