@@ -9,13 +9,15 @@ const int CE1 = 11;
 
 int main()
 {
+	cout << "Started up";
 	pinMode(CE1, OUTPUT);
 	digitalWrite(CE1, 0);
 	ili9341 inst;
 	inst.setBrightness(255);
 	
+	cout << "Before \n";
 	for (int i= 0;i< 5; i++) {
-		cout << "Write Some pixels";
+		cout << "Write Some pixels \n";
 		inst.clearScreen();
 		
 	
