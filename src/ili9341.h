@@ -24,7 +24,7 @@ private:
 	void adressSet( int x, int y, int w, int h);
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
-	void writeToBuffer(int x, int y, int width, int height);
+	void writeToBuffer(int x, int y, int width, int height, unsigned char h, unsigned char l);
 
 	static const unsigned char DC   = 4;// # gpio pin 16 = wiringpi no. 4 (BCM 23)
 	static const unsigned char RST  = 5;// # gpio pin 18 = wiringpi no. 5 (BCM 24)
@@ -41,12 +41,14 @@ private:
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 
 	struct Rect {
-		int x, y, w, h;
-		Rect(int dx, int dy, int dw, int dh) {
+		int x, y, w, h, bh, bl;
+		Rect(int dx, int dy, int dw, int dh, unsigned char ch, unsigned char cl) {
 			x = dx;
 			y = dy;
 			w = dw;
 			h = dh;
+			bh = ch;
+			bl = cl;
 		}
 	};
 

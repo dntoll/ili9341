@@ -148,7 +148,9 @@ void ili9341::flush() {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
-					dirtyRects[i].h);
+					dirtyRects[i].h,
+					dirtyRects[i].bh,
+					dirtyRects[i].bl);
 	}
 	dirtyRects.clear();
 
@@ -165,7 +167,7 @@ void ili9341::flush() {
 
 
 
-void ili9341::writeToBuffer(int x, int y, int width, int height) {
+void ili9341::writeToBuffer(int x, int y, int width, int height, unsigned char high, unsigned char low) {
 
 	//this one must be called in the wrong order... but why?
 	//adressSet(x, y, height, width);
@@ -182,8 +184,8 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 			int by = y + dy;
 			if (bx >= 0 && bx < WIDTH &&
 				by >= 0 && by < HEIGHT) {
-					writeBuffer[to]   = backBuffer[bx][y + dy][0];
-					writeBuffer[to+1] = backBuffer[bx][y + dy][1];
+					writeBuffer[to]   = high;//backBuffer[bx][y + dy][0];
+					writeBuffer[to+1] = low;//backBuffer[bx][y + dy][1];
 			}
 			index++;
 		}
@@ -257,7 +259,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		}
 	}
 	
-	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
+	dirtyRects.push_back(Rect(left, top, right - left, bottom - top, bch, bcl));
 
 }
 
