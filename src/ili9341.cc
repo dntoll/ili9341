@@ -131,7 +131,7 @@ void ili9341::flush() {
 }
 
 int ili9341::toIndex(int x, int y) {
-	return (y * HEIGHT + x)*2;
+	return (y * WIDTH + x)*2;
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
@@ -209,13 +209,13 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
-
-
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
 			int i = toIndex(y+dy, x+dx);
 
-			if (backBuffer[i] != bch || backBuffer[i+1] != bcl) {
+			if (backBuffer[i] != bch ||
+				backBuffer[i+1] != bcl) {
+
 				backBuffer[i] = (unsigned char) bch;
 				backBuffer[i+1] = (unsigned char) bcl;
 			}
