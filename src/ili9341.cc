@@ -123,13 +123,13 @@ void ili9341::writeBuffer(int x, int y, int width, int height) {
 	int numIterations = bytesToWrites / maxWriteSize;
 
 	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = (unsigned char *)&drawBuffer;
+		unsigned char *p = (unsigned char *)&backBuffer;
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("spi failed wiringPiSPIDataRW");
 		}
 	}
 	int leftovers = bytesToWrites % maxWriteSize;
-	unsigned char *p = (unsigned char *)&drawBuffer;
+	unsigned char *p = (unsigned char *)&backBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("spi failed wiringPiSPIDataRW");
 	}
@@ -170,8 +170,8 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int color = (bch<<8) | bcl;
 
 	for (int i =0 ; i < width * height; i++) {
-		drawBuffer[i*2] = (unsigned char) bch;
-		drawBuffer[i*2+1] = (unsigned char) bcl;
+		backBuffer[i*2] = (unsigned char) bch;
+		backBuffer[i*2+1] = (unsigned char) bcl;
 	}
 
 	

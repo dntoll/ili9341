@@ -8,6 +8,8 @@ public:
 	ili9341();
 
 	void clearScreen();
+
+	//write backbuffer to screen
 	void flush();
 
 	void setBrightness(unsigned char lightLevel);
