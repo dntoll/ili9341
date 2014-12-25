@@ -106,10 +106,10 @@ void ili9341::setBrightness(unsigned char led_value) {
 
 void ili9341::test() {
 
-	int x = 20;
+	int x = 100;
 	int y = 20;
-	int width = 320-x*2;
-	int height = 240 - y* 2;
+	int width =  320 - x * 2;
+	int height = 240 - y * 2;
 
 	for (int i = 0; i < buffersize; i++) {
 		writeBuffer[i] = rand()%255;
