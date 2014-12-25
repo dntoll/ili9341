@@ -112,7 +112,7 @@ void ili9341::test() {
 	int height = 240;
 
 	for (int i = 0; i < buffersize; i++) {
-		writeBuffer[i] = 255;
+		writeBuffer[i] = rand()%255;
 	}
 
 	adressSet(x, y, height, width);
