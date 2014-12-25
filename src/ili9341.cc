@@ -141,11 +141,9 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	int index = 0;
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
-
-			int from = toIndex(y + dy, x + dx);
 			int to =  index*2;
-			writeBuffer[to] = backBuffer[from];
-			writeBuffer[to+1] = backBuffer[from+1];
+			writeBuffer[to] =   backBuffer[x + dx][y + dy][0];
+			writeBuffer[to+1] = backBuffer[x + dx][y + dy][1];
 			index++;
 		}
 	}
@@ -214,14 +212,8 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
-			int i = toIndex(y+dy, x+dx);
-
-			if (backBuffer[i] != bch ||
-				backBuffer[i+1] != bcl) {
-
-				backBuffer[i] = (unsigned char) bch;
-				backBuffer[i+1] = (unsigned char) bcl;
-			}
+			backBuffer[x+dx][y+dy][0] = (unsigned char) bch;
+			backBuffer[x+dx][y+dy][1] = (unsigned char) bcl;
 		}
 	}
 	
