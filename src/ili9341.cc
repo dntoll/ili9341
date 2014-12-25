@@ -197,8 +197,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);
 	int i = toIndex(x, y);
-	frontBuffer[i] = bch;
-	frontBuffer[i+1] = bcl;
+
 
 }
 
