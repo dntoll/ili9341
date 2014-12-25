@@ -108,14 +108,14 @@ void ili9341::test() {
 
 	int x = 0;
 	int y = 0;
-	int width =  320 - x * 2;
-	int height = 240 - y * 2;
+	int width =  100;
+	int height = 200;
 
 	for (int i = 0; i < buffersize; i++) {
 		writeBuffer[i] = rand()%255;
 	}
 
-	adressSet(x, y, height, width);
+	adressSet(y, x, height, width);
 	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
