@@ -42,6 +42,12 @@ private:
 
 	struct Rect {
 		int x, y, w, h;
+		Rect(int dx, int dy, int dw, int dh) {
+			x = dx;
+			y = dy;
+			w = dw;
+			h = dh;
+		}
 	};
 
 	std::vector<Rect> dirtyRects;
