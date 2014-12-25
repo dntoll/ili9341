@@ -131,7 +131,7 @@ void ili9341::flush() {
 }
 
 int ili9341::toIndex(int x, int y) {
-	return y + x * WIDTH;
+	return y * WIDTH + x;
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
@@ -195,7 +195,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	Address_set(x, y, x, y);	
 	LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);
-	int i = y + x*320;
+	int i = toIndex(x, y);
 	frontBuffer[i*2] = bch;
 	frontBuffer[i*2+1] = bcl;
 
