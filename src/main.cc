@@ -21,7 +21,7 @@ int main()
 	
 		for (int i = 0; i < 5; i++) {
 			//inst.setColor(rand()%240, rand()%320, rand()%255, rand()%255, rand()%255);
-			inst.fillBox(rand()%240, rand()%320, 50, 50, 255, 255, 255);
+			inst.fillBox(rand()%240, rand()%320, 50, 50, 255, 0, 255);
 
 		}
 		sleep(1);
