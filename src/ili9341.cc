@@ -142,14 +142,14 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	//writeToBuffer(0, 0, WIDTH, HEIGHT);
+	writeToBuffer(0, 0, WIDTH, HEIGHT);
 
-	for(int i=0; i < dirtyRects.size(); i++) {
+	/*for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}
+	}*/
 	dirtyRects.clear();
 
 
@@ -168,7 +168,8 @@ void ili9341::flush() {
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
 
 	//this one must be called in the wrong order... but why?
-	adressSet(x, y, height, width);
+	//adressSet(x, y, height, width);
+	adressSet(y, x, height, width);
 
 	//copy bb to wb
 	int index = 0;
