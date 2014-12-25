@@ -24,9 +24,10 @@ int main()
 			inst.fillBox(rand()%240, rand()%320, 50, 50, 255, 255, 0);
 
 		}
+		inst.flush();
 		sleep(1);
 	}
 	
-	inst.setBrightness(255);
+	inst.setBrightness(0);
 	return 0;
 }
