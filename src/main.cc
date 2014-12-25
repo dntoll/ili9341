@@ -1,11 +1,16 @@
 #include <iostream>
 #include <stdlib.h>
 #include "ili9341.h"
+#include <wiringPi.h>
 
 using namespace std;
 
+const int CE1 = 11;
+
 int main()
 {
+	pinMode(CE1, OUTPUT);
+	digitalWrite(CE1, 0);
 	ili9341 inst;
 	inst.setBrightness(255);
 	
