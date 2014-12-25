@@ -108,8 +108,8 @@ void ili9341::test() {
 
 	int x = 20;
 	int y = 20;
-	int width = 280;
-	int height = 200;
+	int width = 50;
+	int height = 100;
 
 	for (int i = 0; i < buffersize; i++) {
 		writeBuffer[i] = rand()%255;
