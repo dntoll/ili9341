@@ -14,11 +14,13 @@ int main()
 	digitalWrite(CE1, 0);
 	ili9341 inst;
 
+	inst.setBrightness(255);
+
 	inst.clearScreen();
 	inst.flush();
 	sleep(1);
 
-	inst.setBrightness(255);
+
 	inst.test();
 	
 /*
