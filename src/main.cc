@@ -17,21 +17,21 @@ int main()
 	inst.clearScreen();
 	inst.flush();
 	
-	/*cout << "Before \n";
+	cout << "Before \n";
 	for (int i= 0;i< 5; i++) {
 		cout << "Write Some pixels \n";
-		//inst.clearScreen();
+		inst.clearScreen();
 
-		//inst.fillBox(0, 0, 50, 50, 255, 0, 0);
-		//inst.fillBox(190, 0, 50, 50, 0, 255, 0);
-		//inst.fillBox(0, 120, 50, 50, 0, 0, 255);
+		inst.fillBox(0, 0, 50, 50, 255, 0, 0);
+		inst.fillBox(190, 0, 50, 50, 0, 255, 0);
+		inst.fillBox(0, 120, 50, 50, 0, 0, 255);
 	
 
 		cout << "Wrote Some pixels \n";
 		inst.flush();
 		sleep(1);
 		cout << "Flushed Some pixels \n";
-	}*/
+	}
 	sleep(5);
 	inst.setBrightness(0);
 	return 0;
