@@ -117,6 +117,7 @@ void ili9341::flush() {
 					dirtyRects[i].w,
 					dirtyRects[i].h);
 	}
+	dirtyRects.clear();
 
 
 	//copy to fb
@@ -132,6 +133,15 @@ void ili9341::flush() {
 void ili9341::writeBuffer(int x, int y, int width, int height) {
 	Address_set(x, y, x+width, y+height);
 
+	//copy bb to wb
+	for (int dx=0; dx < width; dx++) {
+		for (int dy=0; dy < height; dy++) {
+			int i = (y+dy) * 240 + x + dx;
+			writeBuffer[i*2] = backBuffer[i*2];
+			writeBuffer[i*2+1] = backBuffer[i*2+1];
+		}
+	}
+
 	//push buffer
 	digitalWrite(DC, 1);
 
@@ -140,15 +150,15 @@ void ili9341::writeBuffer(int x, int y, int width, int height) {
 	int numIterations = bytesToWrites / maxWriteSize;
 
 	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = (unsigned char *)&backBuffer;
+		unsigned char *p = (unsigned char *)&writeBuffer;
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
-			printf("spi failed wiringPiSPIDataRW");
+			printf("SPI failed wiringPiSPIDataRW");
 		}
 	}
 	int leftovers = bytesToWrites % maxWriteSize;
-	unsigned char *p = (unsigned char *)&backBuffer;
+	unsigned char *p = (unsigned char *)&writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
-		printf("spi failed wiringPiSPIDataRW");
+		printf("SPI failed wiringPiSPIDataRW");
 	}
 
 
@@ -157,7 +167,7 @@ void ili9341::writeBuffer(int x, int y, int width, int height) {
 void ili9341::LCD_Write_DATA(unsigned char data) {
 	digitalWrite(DC, 1);
 	if (wiringPiSPIDataRW(spiChannel, &data, 1) == -1) {
-		printf("spi failed lcd_data");
+		printf("SPI failed lcd_data");
 	}
 	
 }
@@ -165,7 +175,7 @@ void ili9341::LCD_Write_DATA(unsigned char data) {
 void ili9341::LCD_Write_COM(unsigned char com) {
 	digitalWrite(DC, 0);
 	if (wiringPiSPIDataRW(spiChannel, &com, 1) == -1) {
-		printf("spi failed lcd_cmd");
+		printf("SPI failed lcd_cmd");
 	}
 }
 
@@ -192,8 +202,8 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
-	for (int dx=0; dx < width; dx++) {
-		for (int dy=0; dy < height; dy++) {
+	for (int dx=x; dx < x+width; dx++) {
+		for (int dy=y; dy < y+height; dy++) {
 			int i = dy * 240 + dx;
 			backBuffer[i*2] = (unsigned char) bch;
 			backBuffer[i*2+1] = (unsigned char) bcl;
