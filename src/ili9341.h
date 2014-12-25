@@ -21,7 +21,7 @@ public:
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;
 private:
-	void Address_set( int x1, int y1, int x2, int y2);
+	void adressSet( int x, int y, int w, int h);
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
 	void writeToBuffer(int x, int y, int width, int height);

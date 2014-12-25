@@ -135,7 +135,7 @@ int ili9341::toIndex(int x, int y) {
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
-	Address_set(x, y, x+width-1, y+height-1);
+	adressSet(x, y, width, height);
 
 	//copy bb to wb
 	for (int dx=0; dx < width; dx++) {
@@ -225,19 +225,25 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 
 }
 
-void ili9341::Address_set( int x1, int y1, int x2, int y2)
+void ili9341::adressSet( int x, int y, int width, int height)
 {
+	//https://github.com/luckasfb/lcm_drivers/blob/master/alcatel_ot_903d_jrd73_gb/lcm/ili9341/ili9341.c
+	unsigned int x0 = x;
+	unsigned int y0 = y;
+	unsigned int x1 = x0 + width - 1;
+	unsigned int y1 = y0 + height - 1;
+
 	LCD_Write_COM(0x2a);
+	LCD_Write_DATA(x0 >> 8);
+	LCD_Write_DATA(x0);
 	LCD_Write_DATA(x1 >> 8);
 	LCD_Write_DATA(x1);
-	LCD_Write_DATA(x2 >> 8);
-	LCD_Write_DATA(x2);
 
 	LCD_Write_COM(0x2b);
+	LCD_Write_DATA(y0 >> 8);
+	LCD_Write_DATA(y0);
 	LCD_Write_DATA(y1 >> 8);
 	LCD_Write_DATA(y1);
-	LCD_Write_DATA(y2 >> 8);
-	LCD_Write_DATA(y2);
 
 	LCD_Write_COM(0x2C);         				 
 }
