@@ -40,6 +40,8 @@ int main()
 		//cout << "Flushed Some pixels \n";
 	}*/
 
+	sleep(1);
+
 	inst.setBrightness(0);
 	return 0;
 }
