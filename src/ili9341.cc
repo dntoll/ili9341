@@ -135,7 +135,7 @@ void ili9341::flush() {
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
 
 	//this one must be called in the wrong order... but why?
-	adressSet(x, y, width, height);
+	adressSet(x, y, height, width);
 
 	//copy bb to wb
 	int index = 0;
@@ -146,11 +146,10 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 			//here we turn it around since i mounted it wrong
 			int bx = WIDTH - (x + dx)-1;
 			int by = y + dy;
-			if (bx >= 0 && bx < WIDTH) {
-				if (by >= 0 && by < HEIGHT) {
-					writeBuffer[to] =   backBuffer[bx][y + dy][0];
+			if (bx >= 0 && bx < WIDTH &&
+				by >= 0 && by < HEIGHT) {
+					writeBuffer[to]   = backBuffer[bx][y + dy][0];
 					writeBuffer[to+1] = backBuffer[bx][y + dy][1];
-				}
 			}
 			index++;
 		}
