@@ -111,25 +111,7 @@ void ili9341::clearScreen() {
 void ili9341::flush() {
 	//writeBuffer(0, 0, 240, 320);
 
-	for (int i = 0; i < buffersize; i += 2) {
-		if (frontbuffer[i*2] == backBuffer[i*2] && frontbuffer[i*2+1] == backBuffer[i*2+1]) {
-			//ok
-		} else {
-			//find how long
-			for (int j = i+2; j < buffersize; j += 2) {
-				if (frontbuffer[j*2] == backBuffer[j*2] && frontbuffer[j*2+1] == backBuffer[j*2+1]) {
-					//break and write
-					int numBytes = j-i;
 
-
-
-					break;
-				}
-
-			}
-
-		}
-	}
 
 	//copy to fb
 	for (int x=0; x < width; x++) {
