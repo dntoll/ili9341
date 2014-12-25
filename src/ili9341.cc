@@ -135,7 +135,7 @@ int ili9341::toIndex(int x, int y) {
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
-	adressSet(x, y, width, height);
+	adressSet(x, y, height, width);
 
 	//copy bb to wb
 
