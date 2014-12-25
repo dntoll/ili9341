@@ -139,8 +139,9 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 
 	//copy bb to wb
 	int index = 0;
-	for (int dy=0; dy < height; dy++) {
-		for (int dx=0; dx < width; dx++) {
+	for (int dx=0; dx < width; dx++) {
+		for (int dy=0; dy < height; dy++) {
+
 			int from = toIndex(y + dy, x + dx);
 			int to =  index*2;
 			writeBuffer[to] = backBuffer[from];
