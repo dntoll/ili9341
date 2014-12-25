@@ -131,7 +131,7 @@ void ili9341::flush() {
 }
 
 int ili9341::toIndex(int x, int y) {
-	return y * WIDTH + x;
+	return (y * WIDTH + x*2)*2;
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
@@ -142,8 +142,8 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 		for (int dy=0; dy < height; dy++) {
 			int from = toIndex(y + dy, x + dx);
 			int to = toIndex(dx, dy);
-			writeBuffer[to*2] = backBuffer[from*2];
-			writeBuffer[to*2+1] = backBuffer[from*2+1];
+			writeBuffer[to] = backBuffer[from];
+			writeBuffer[to+1] = backBuffer[from+1];
 		}
 	}
 
@@ -196,8 +196,8 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);
 	int i = toIndex(x, y);
-	frontBuffer[i*2] = bch;
-	frontBuffer[i*2+1] = bcl;
+	frontBuffer[i] = bch;
+	frontBuffer[i+1] = bcl;
 
 }
 
@@ -215,9 +215,9 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		for (int dy=0; dy < height; dy++) {
 			int i = toIndex(y+dy, x+dx);
 
-			if (backBuffer[i*2] != bch || backBuffer[i*2+1] != bcl) {
-				backBuffer[i*2] = (unsigned char) bch;
-				backBuffer[i*2+1] = (unsigned char) bcl;
+			if (backBuffer[i] != bch || backBuffer[i+1] != bcl) {
+				backBuffer[i] = (unsigned char) bch;
+				backBuffer[i+1] = (unsigned char) bcl;
 			}
 		}
 	}
