@@ -115,7 +115,7 @@ void ili9341::test() {
 		writeBuffer[i] = rand()%255;
 	}
 
-	adressSet(x, y, width, height);
+	adressSet(x, y, height, width);
 	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
