@@ -32,7 +32,7 @@ int main()
 		sleep(1);
 		cout << "Flushed Some pixels \n";
 	}*/
-	
+	sleep(5);
 	inst.setBrightness(0);
 	return 0;
 }
