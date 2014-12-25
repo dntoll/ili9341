@@ -169,9 +169,12 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
-	for (int i =0 ; i < width * height; i++) {
-		backBuffer[i*2] = (unsigned char) bch;
-		backBuffer[i*2+1] = (unsigned char) bcl;
+	for (int x=0; x < width; x++) {
+		for (int y=0; y < height; y++) {
+			int i = y * 320 + x;
+			backBuffer[i*2] = (unsigned char) bch;
+			backBuffer[i*2+1] = (unsigned char) bcl;
+		}
 	}
 
 	
