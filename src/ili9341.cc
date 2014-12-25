@@ -257,7 +257,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		}
 	}
 	
-	dirtyRects.push_back(Rect(x, y, width, height));
+	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
 
 }
 
