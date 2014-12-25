@@ -23,7 +23,7 @@ int main()
 		inst.clearScreen();
 
 		inst.fillBox(0, 0, 50, 50, 255, 0, 0);
-		inst.fillBox(50, 0, 50, 50, 0, 255, 0);
+		inst.fillBox(1, 0, 50, 50, 0, 255, 0);
 		inst.fillBox(0, 120, 50, 50, 0, 0, 255);
 	
 
