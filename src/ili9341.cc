@@ -131,7 +131,7 @@ void ili9341::flush() {
 }
 
 int toIndex(int x, int y) {
-	return dy + dx * HEIGHT;
+	return y + x * HEIGHT;
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
