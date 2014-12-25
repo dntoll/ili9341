@@ -138,13 +138,14 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	adressSet(x, y, height, width);
 
 	//copy bb to wb
-
+	int index = 0;
 	for (int dy=0; dy < height; dy++) {
 		for (int dx=0; dx < width; dx++) {
 			int from = toIndex(y + dy, x + dx);
-			int to =  (dy * width + dx)*2;
+			int to =  index*2;
 			writeBuffer[to] = backBuffer[from];
 			writeBuffer[to+1] = backBuffer[from+1];
+			index++;
 		}
 	}
 
