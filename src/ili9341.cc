@@ -105,7 +105,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 }
 
 void ili9341::clearScreen() {
-	fillBox(0, 0, 240, 320, 255, 0, 0);
+	fillBox(0, 0, 240, 320, 0, 0, 0);
 }
 
 void ili9341::flush() {
