@@ -106,7 +106,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 
 void ili9341::test() {
 
-	int x = 20;
+	/*int x = 20;
 	int y = 20;
 	int width = 50;
 	int height = 100;
@@ -132,7 +132,7 @@ void ili9341::test() {
 
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("SPI failed wiringPiSPIDataRW");
-	}
+	}*/
 
 }
 
