@@ -22,9 +22,9 @@ int main()
 		cout << "Write Some pixels \n";
 		//inst.clearScreen();
 
-		inst.fillBox(0, 0, 50, 50, 255, 0, 0);
-		inst.fillBox(190, 0, 50, 50, 0, 255, 0);
-		inst.fillBox(0, 120, 50, 50, 0, 0, 255);
+		//inst.fillBox(0, 0, 50, 50, 255, 0, 0);
+		//inst.fillBox(190, 0, 50, 50, 0, 255, 0);
+		//inst.fillBox(0, 120, 50, 50, 0, 0, 255);
 	
 		/*for (int i = 0; i < 5; i++) {
 			//inst.setColor(rand()%240, rand()%320, rand()%255, rand()%255, rand()%255);
