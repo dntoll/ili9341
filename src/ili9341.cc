@@ -135,7 +135,7 @@ void ili9341::flush() {
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
 
 	//this one must be called in the wrong order... but why?
-	adressSet(x, y, width, height);
+	adressSet(x, y, height, width);
 
 	//copy bb to wb
 	int index = 0;
@@ -230,8 +230,8 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 void ili9341::adressSet( int x, int y, int width, int height)
 {
 	//https://github.com/luckasfb/lcm_drivers/blob/master/alcatel_ot_903d_jrd73_gb/lcm/ili9341/ili9341.c
-	unsigned int x0 = y;
-	unsigned int y0 = x;
+	unsigned int x0 = x;
+	unsigned int y0 = y;
 	unsigned int x1 = x0 + width - 1;
 	unsigned int y1 = y0 + height - 1;
 
