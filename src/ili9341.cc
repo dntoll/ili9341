@@ -140,8 +140,13 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
 			int to =  index*2;
-			writeBuffer[to] =   backBuffer[WIDTH - (x + dx)][y + dy][0];
-			writeBuffer[to+1] = backBuffer[WIDTH - (x + dx)][y + dy][1];
+
+			if (WIDTH - (x + dx)-1 >= 0 && WIDTH - (x + dx)-1 < WIDTH) {
+				if (y + dy >= 0 && y + dy < HEIGHT) {
+					writeBuffer[to] =   backBuffer[WIDTH - (x + dx)-1][y + dy][0];
+					writeBuffer[to+1] = backBuffer[WIDTH - (x + dx)-1][y + dy][1];
+				}
+			}
 			index++;
 		}
 	}
