@@ -44,7 +44,7 @@ private:
 		int x, y, w, h;
 	};
 
-	vector<Rect> dirtyRects;
+	std::vector<Rect> dirtyRects;
 
 	unsigned char frontBuffer[buffersize];
 	unsigned char backBuffer[buffersize];
