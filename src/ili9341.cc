@@ -131,11 +131,11 @@ void ili9341::flush() {
 }
 
 int ili9341::toIndex(int x, int y) {
-	return (y + x*HEIGHT)*2;
+	return (y*WIDTH + x)*2;
 }
 
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
-	Address_set(x, y, x+width, y+height);
+	Address_set(x, y, x+width-1, y+height-1);
 
 	//copy bb to wb
 	for (int dx=0; dx < width; dx++) {
