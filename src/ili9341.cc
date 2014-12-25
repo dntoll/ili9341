@@ -142,14 +142,14 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	writeToBuffer(0, 0, WIDTH, HEIGHT);
+	//writeToBuffer(0, 0, WIDTH, HEIGHT);
 
-	/*for(int i=0; i < dirtyRects.size(); i++) {
+	for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}*/
+	}
 	dirtyRects.clear();
 
 
