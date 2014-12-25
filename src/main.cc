@@ -26,10 +26,11 @@ int main()
 	cout << "Before \n";
 	for (int i= 0;i< 5; i++) {
 		cout << "Write Some pixels \n";
+		inst.clearScreen();
 
-		inst.fillBox(0, 0, 50, 50, 255, 0, 0);
-		inst.fillBox(250-50, 0, 50, 50, 0, 255, 0);
-		inst.fillBox(120, 120, 50, 50, 0, 0, 255);
+		inst.fillBox(rand()%320, rand()%240, 50, 50, 255, 0, 0);
+		inst.fillBox(rand()%320, rand()%240, 50, 50, 0, 255, 0);
+		inst.fillBox(rand()%320, rand()%240, 50, 50, 0, 0, 255);
 	
 
 		cout << "Wrote Some pixels \n";
