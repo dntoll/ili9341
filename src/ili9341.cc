@@ -155,25 +155,9 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
-		//copy bb to wb
-			for (int dx=0; dx < width; dx++) {
-				for (int dy=0; dy < height; dy++) {
-					int from = (y+dy) * HEIGHT + x + dx;
-					int to = (dy) * HEIGHT + dx;
-					writeBuffer[to*2] = backBuffer[from*2];
-					writeBuffer[to*2+1] = backBuffer[from*2+1];
-				}
-			}
+
 	}
-	//copy bb to wb
-		for (int dx=0; dx < width; dx++) {
-			for (int dy=0; dy < height; dy++) {
-				int from = (y+dy) * HEIGHT + x + dx;
-				int to = (dy) * HEIGHT + dx;
-				writeBuffer[to*2] = backBuffer[from*2];
-				writeBuffer[to*2+1] = backBuffer[from*2+1];
-			}
-		}
+
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
