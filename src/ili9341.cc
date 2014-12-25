@@ -119,7 +119,7 @@ void ili9341::test() {
 	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
-	int bytesToWrites = width * height;
+	int bytesToWrites = width * height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
