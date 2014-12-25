@@ -105,11 +105,11 @@ void ili9341::setBrightness(unsigned char led_value) {
 }
 
 void ili9341::clearScreen() {
-	fillBox(0, 0, 240, 320, 255, 255, 0);
+	fillBox(0, 0, WIDTH, HEIGHT, 255, 255, 0);
 }
 
 void ili9341::flush() {
-	writeToBuffer(0, 0, 320, 240);
+	writeToBuffer(0, 0, WIDTH, HEIGHT);
 
 	/*for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
