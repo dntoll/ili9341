@@ -112,7 +112,7 @@ void ili9341::flush() {
 	//writeBuffer(0, 0, 240, 320);
 
 	for(int i=0; i < dirtyRects.size(); i++) {
-		writeBuffer(dirtyRects[i].x,
+		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
@@ -130,7 +130,7 @@ void ili9341::flush() {
 	}
 }
 
-void ili9341::writeBuffer(int x, int y, int width, int height) {
+void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	Address_set(x, y, x+width, y+height);
 
 	//copy bb to wb
