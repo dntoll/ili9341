@@ -25,7 +25,7 @@ private:
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
 	void writeToBuffer(int x, int y, int width, int height);
-	int tiIndex(int x, int y);
+	int toIndex(int x, int y);
 
 	static const unsigned char DC   = 4;// # gpio pin 16 = wiringpi no. 4 (BCM 23)
 	static const unsigned char RST  = 5;// # gpio pin 18 = wiringpi no. 5 (BCM 24)
