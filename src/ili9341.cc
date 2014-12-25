@@ -137,7 +137,7 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
 			int from = (y+dy) * 240 + x + dx;
-			int to = (dy) * WIDTH + dx;
+			int to = (dy) * HEIGHT + dx;
 			writeBuffer[to*2] = backBuffer[from*2];
 			writeBuffer[to*2+1] = backBuffer[from*2+1];
 		}
