@@ -116,6 +116,7 @@ void ili9341::test() {
 	}
 
 	adressSet(0, 0, 240, 320);
+	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
 	int bytesToWrites = width * height;
