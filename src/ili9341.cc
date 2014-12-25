@@ -109,7 +109,7 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	writeToBuffer(0, 0, WIDTH, HEIGHT);
+	writeToBuffer(0, 0, HEIGHT, WIDTH);
 
 	/*for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
@@ -141,7 +141,7 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	for (int dx=0; dx < width; dx++) {
 		for (int dy=0; dy < height; dy++) {
 			int from = toIndex(y + dy, x + dx);
-			int to =  (dy*height + dx)*2;
+			int to =  (dy + dx*height)*2;
 			writeBuffer[to] = backBuffer[from];
 			writeBuffer[to+1] = backBuffer[from+1];
 		}
