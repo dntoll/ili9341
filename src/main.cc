@@ -24,8 +24,8 @@ int main()
 
 	inst.flush();
 	cout << "Before \n";
-	for (int i= 0;i< 5; i++) {
-		cout << "Write Some pixels \n";
+	for (int i= 0;i< 60; i++) {
+		//cout << "Write Some pixels \n";
 		inst.clearScreen();
 
 		inst.fillBox(rand()%320, rand()%240, 50, 50, 255, 0, 0);
@@ -33,10 +33,10 @@ int main()
 		inst.fillBox(rand()%320, rand()%240, 50, 50, 0, 0, 255);
 	
 
-		cout << "Wrote Some pixels \n";
+		//cout << "Wrote Some pixels \n";
 		inst.flush();
-		sleep(1);
-		cout << "Flushed Some pixels \n";
+		//sleep(1);
+		//cout << "Flushed Some pixels \n";
 	}
 	sleep(5);
 	inst.setBrightness(0);
