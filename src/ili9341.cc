@@ -130,7 +130,7 @@ void ili9341::flush() {
 	}
 }
 
-int toIndex(int x, int y) {
+int ili9341::toIndex(int x, int y) {
 	return y + x * HEIGHT;
 }
 
