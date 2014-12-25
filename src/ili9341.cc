@@ -111,12 +111,12 @@ void ili9341::clearScreen() {
 void ili9341::flush() {
 	writeToBuffer(0, 0, WIDTH, HEIGHT);
 
-	/*for(int i=0; i < dirtyRects.size(); i++) {
+	for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}*/
+	}
 	dirtyRects.clear();
 
 
@@ -196,19 +196,34 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 {
-	dirtyRects.push_back(Rect(x, y, width, height));
+
 	// rrrrrggggggbbbbb
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
 
+
+	int left = WIDTH;
+	int right = 0;
+	int top = HEIGHT;
+	int bottom = 0;
+
 	for (int dx=0; dx < width && x+dx < WIDTH; dx++) {
 		for (int dy=0; dy < height && y+dy < HEIGHT; dy++) {
 			backBuffer[x+dx][y+dy][0] = (unsigned char) bch;
 			backBuffer[x+dx][y+dy][1] = (unsigned char) bcl;
+			if (x+dx < left)
+				left = x + dx;
+			if (y+dy < top)
+				top = y + dy;
+			if (x+dx > right)
+				right = x + dx;
+			if (y+dy > bottom)
+				bottom = y + dy;
 		}
 	}
 	
+	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
 
 }
 
