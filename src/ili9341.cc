@@ -171,11 +171,11 @@ void ili9341::writeToBuffer(int x, int y, int width, int height, unsigned char h
 
 	//this one must be called in the wrong order... but why?
 	//adressSet(x, y, height, width);
-	adressSet(y, x, height, width);
+	adressSet(y, WIDTH - x -1 -width, height, width);
 
 	//copy bb to wb
 	int index = 0;
-	for (int dx=0; dx < width; dx++) {
+	for (int dx=width-1; dx >= 0; dx--) {
 		for (int dy=0; dy < height; dy++) {
 			int to =  index*2;  //two bytes per pixel
 
@@ -232,9 +232,6 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 {
-	x = WIDTH - x - 1 - width;
-
-
 	// rrrrrggggggbbbbb
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
