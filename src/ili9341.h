@@ -54,6 +54,7 @@ private:
 
 	unsigned char frontBuffer[buffersize];
 	unsigned char backBuffer[buffersize];
+	unsigned char writeBuffer[buffersize];
 	int fileDescriptor;
 
 };
