@@ -232,6 +232,8 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 
 void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 {
+	x = WIDTH - x - 1 - width;
+
 
 	// rrrrrggggggbbbbb
 	int bch=((r&248)|g>>5);
