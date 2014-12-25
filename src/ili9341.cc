@@ -7,7 +7,7 @@ ili9341::ili9341() {
 	fileDescriptor = wiringPiSPISetup(spiChannel, spiSpeed);
         if (fileDescriptor <= -1) {
              printf ("Error wiringPiSPISetup");
-	    exit (EXIT_FAILURE);
+	    exit(EXIT_FAILURE);
         }
 	wiringPiSetup();
 	pinMode(RST, OUTPUT);
@@ -108,6 +108,33 @@ void ili9341::clearScreen() {
 	fillBox(0, 0, 240, 320, 0, 0, 0);
 }
 
+void ili9341::flush() {
+	writeBuffer(0, 0, 240, 320);
+}
+
+void ili9341::writeBuffer(int x, int y, int width, int height) {
+	Address_set(x, y, x+width, y+height);
+
+	//push buffer
+	digitalWrite(DC, 1);
+
+	int maxWriteSize = 2048;
+	int bytesToWrites = width * height * 2;
+	int numIterations = bytesToWrites / maxWriteSize;
+
+	for (int i = 0; i< numIterations; i++) {
+		unsigned char *p = (unsigned char *)&drawBuffer;
+		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
+			printf("spi failed wiringPiSPIDataRW");
+		}
+	}
+	int leftovers = bytesToWrites % maxWriteSize;
+	unsigned char *p = (unsigned char *)&drawBuffer;
+	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
+		printf("spi failed wiringPiSPIDataRW");
+	}
+}
+
 void ili9341::LCD_Write_DATA(unsigned char data) {
 	digitalWrite(DC, 1);
 	if (wiringPiSPIDataRW(spiChannel, &data, 1) == -1) {
@@ -147,26 +174,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		drawBuffer[i*2+1] = (unsigned char) bcl;
 	}
 
-	Address_set(x, y, x+width, y+height);	
 	
-	//push buffer
-	digitalWrite(DC, 1);
-
-	int maxWriteSize = 2048;
-	int bytesToWrites = width * height * 2;
-	int numIterations = bytesToWrites / maxWriteSize;
-
-	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = (unsigned char *)&drawBuffer;	
-		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
-			printf("spi failed wiringPiSPIDataRW");
-		}
-	}
-	int leftovers = bytesToWrites % maxWriteSize;
-	unsigned char *p = (unsigned char *)&drawBuffer;	
-	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
-		printf("spi failed wiringPiSPIDataRW");
-	}
 }
 
 void ili9341::Address_set( int x1, int y1, int x2, int y2)
