@@ -109,15 +109,14 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	//writeBuffer(0, 0, 240, 320);
+	writeBuffer(0, 0, 240, 320);
 
-	for(int i=0; i < dirtyRects.size(); i++) {
+	/*for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}
-	dirtyRects.clear();
+	}*/
 
 
 	//copy to fb
