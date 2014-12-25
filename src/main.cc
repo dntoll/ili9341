@@ -14,6 +14,8 @@ int main()
 	digitalWrite(CE1, 0);
 	ili9341 inst;
 	inst.setBrightness(255);
+	inst.clearScreen();
+	inst.flush();
 	
 	cout << "Before \n";
 	for (int i= 0;i< 5; i++) {
