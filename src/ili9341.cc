@@ -192,7 +192,7 @@ void ili9341::setColor(int x, int y, int r, int g, int b)
 	int bch=((r&248)|g>>5);
 	int bcl=((g&28)<<3|b>>3);
 	int color = (bch<<8) | bcl;
-	Address_set(x, y, x, y);	
+	adressSet(x, y, 1, 1);
 	LCD_Write_DATA(bch);
 	LCD_Write_DATA(bcl);
 	int i = toIndex(x, y);
