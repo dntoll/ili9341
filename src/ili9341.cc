@@ -135,7 +135,7 @@ void ili9341::flush() {
 void ili9341::writeToBuffer(int x, int y, int width, int height) {
 
 	//this one must be called in the wrong order... but why?
-	adressSet(x, y, height, width);
+	adressSet(x, y, width, height);
 
 	//copy bb to wb
 	int index = 0;
