@@ -14,9 +14,9 @@ int main()
 	digitalWrite(CE1, 0);
 	ili9341 inst;
 	inst.setBrightness(255);
-	inst.clearScreen();
+	inst.test();
 	
-
+/*
 	inst.fillBox(0, 0, 25, 50, 			255, 	0, 		0);
 	inst.fillBox(inst.WIDTH-25, 0, 25, 50, 	0, 		255, 	0);
 	inst.fillBox(0, inst.HEIGHT-50, 25, 50, 	0, 		0, 		255);
@@ -34,7 +34,7 @@ int main()
 		sleep(1);
 		//sleep(1);
 		//cout << "Flushed Some pixels \n";
-	}
+	}*/
 
 	sleep(1);
 

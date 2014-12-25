@@ -16,6 +16,7 @@ public:
 
 	void setBrightness(unsigned char lightLevel);
 	void fillBox(int x, int y, int width, int height, int r, int g, int b);
+	void test();
 
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;

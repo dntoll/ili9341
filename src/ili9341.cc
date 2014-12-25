@@ -104,19 +104,47 @@ void ili9341::setBrightness(unsigned char led_value) {
 	
 }
 
+void ili9341::test() {
+	clearScreen();
+	int x = 0;
+	int y = 0;
+	int width = 320;
+	int height = 240;
+
+	adressSet(x, y, height, width);
+
+	int maxWriteSize = 2048;
+	int bytesToWrites = width * height * 2;
+	int numIterations = bytesToWrites / maxWriteSize;
+	int leftovers = bytesToWrites % maxWriteSize;
+	unsigned char *p = (unsigned char *)&writeBuffer;
+
+	for (int i = 0; i< numIterations; i++) {
+		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
+			printf("SPI failed wiringPiSPIDataRW");
+		}
+	}
+
+
+	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
+		printf("SPI failed wiringPiSPIDataRW");
+	}
+
+}
+
 void ili9341::clearScreen() {
 	fillBox(0, 0, WIDTH, HEIGHT, 0, 0, 0);
 }
 
 void ili9341::flush() {
-	writeToBuffer(0, 0, WIDTH, HEIGHT);
+	//writeToBuffer(0, 0, WIDTH, HEIGHT);
 
-	/*for(int i=0; i < dirtyRects.size(); i++) {
+	for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
 					dirtyRects[i].h);
-	}*/
+	}
 	dirtyRects.clear();
 
 
