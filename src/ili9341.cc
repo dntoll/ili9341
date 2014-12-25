@@ -211,7 +211,7 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 		for (int dy=0; dy < height; dy++) {
 			int i = (y+dy) * 240 + (x+dx);
 
-			if (backBuffer[i*2] != bch && backBuffer[i*2+1] != bcl) {
+			if (backBuffer[i*2] != bch || backBuffer[i*2+1] != bcl) {
 				backBuffer[i*2] = (unsigned char) bch;
 				backBuffer[i*2+1] = (unsigned char) bcl;
 			}
