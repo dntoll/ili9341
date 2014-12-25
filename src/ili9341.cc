@@ -105,11 +105,15 @@ void ili9341::setBrightness(unsigned char led_value) {
 }
 
 void ili9341::test() {
-	clearScreen();
+
 	int x = 0;
 	int y = 0;
 	int width = 320;
 	int height = 240;
+
+	for (int i = 0; i < buffersize; i++) {
+		writeBuffer[i] = 255;
+	}
 
 	adressSet(x, y, height, width);
 
