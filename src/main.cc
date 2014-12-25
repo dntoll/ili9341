@@ -15,7 +15,7 @@ int main()
 	inst.setBrightness(255);
 	
 	for (int i= 0;i< 5; i++) {
-		cout << "Write Some pixels \n";	
+		cout << "Write Some pixels";
 		inst.clearScreen();
 		
 	
@@ -24,8 +24,10 @@ int main()
 			inst.fillBox(rand()%240, rand()%320, 50, 50, 255, 255, 0);
 
 		}
+		cout << "Wrote Some pixels \n";
 		inst.flush();
 		sleep(1);
+		cout << "Flushed Some pixels \n";
 	}
 	
 	inst.setBrightness(0);
