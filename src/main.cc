@@ -17,7 +17,7 @@ int main()
 	ili9341 lcd;
 	BackBuffer inst(lcd);
 
-	inst.setBrightness(255);
+	lcd.setBrightness(255);
 
 	inst.clearScreen();
 	inst.flush();
@@ -52,6 +52,6 @@ int main()
 
 	sleep(3);
 
-	inst.setBrightness(0);
+	lcd.setBrightness(0);
 	return 0;
 }
