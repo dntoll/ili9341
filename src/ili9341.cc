@@ -237,10 +237,20 @@ void ili9341::fillBox(Rect screen, Color fill)
 		for (int dy=0; dy < screen.height && screen.y + dy < HEIGHT; dy++) {
 			backBuffer[screen.x + dx][screen.y + dy][0] = bch;
 			backBuffer[screen.x + dx][screen.y + dy][1] = bcl;
+
+			//screen.crop(0, 0, WIDTH, HEIGHT)?
+			if (screen.x + dx < left)
+				left = screen.x + dx;
+			if (screen.y + dy < top)
+				top = screen.y + dy;
+			if (screen.x + dx > right)
+				right = screen.x + dx;
+			if (screen.y + dy > bottom)
+				bottom = screen.y + dy;
 		}
 	}
 	
-	dirtyRects.push_back(screen);
+	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
 
 }
 
