@@ -19,7 +19,7 @@ public:
 	void flush();
 
 	void setBrightness(unsigned char lightLevel);
-	void fillBox(Rect screen, Color fill);
+	void fillBox(const Rect &screen, const Color &fill);
 	void test();
 
 	static const int WIDTH = 320;

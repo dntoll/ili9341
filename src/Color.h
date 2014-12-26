@@ -11,11 +11,11 @@ class Color {
 		}
 
 		// rrrrrggggggbbbbb
-		unsigned char get16bitHigh() {
+		unsigned char get16bitHigh() const {
 			return ((r & 248) | g >> 5);
 		}
 		// rrrrrggggggbbbbb
-		unsigned char get16bitLow() {
+		unsigned char get16bitLow() const {
 			return ((g & 28) << 3 | b >> 3);
 		}
 

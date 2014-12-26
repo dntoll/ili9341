@@ -220,7 +220,7 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 	}
 }
 
-void ili9341::fillBox(Rect screen, Color fill)
+void ili9341::fillBox(const Rect &screen, const Color &fill)
 {
 
 	unsigned char bch= fill.get16bitHigh();
