@@ -236,9 +236,9 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 	unsigned char bcl= fill.get16bitLow();
 
 
-	int left = WIDTH;
+	int left = ili9341::WIDTH;
 	int right = 0;
-	int top = HEIGHT;
+	int top = ili9341::HEIGHT;
 	int bottom = 0;
 
 
