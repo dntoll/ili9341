@@ -24,10 +24,10 @@ int main()
 	inst.test();
 	
 
-	inst.fillBox(0, 0, 25, 50, 			255, 	0, 		0);
-	inst.fillBox(inst.WIDTH-25, 0, 25, 50, 	0, 		255, 	0);
-	inst.fillBox(0, inst.HEIGHT-50, 25, 50, 	0, 		0, 		255);
-	inst.fillBox(inst.WIDTH-25, inst.HEIGHT-50, 25, 50,255, 	0, 		255);
+	inst.fillBox(Rect(0, 0, 25, 50), Color(255, 	0, 		0));
+	inst.fillBox(Rect(inst.WIDTH-25, 0, 25, 50), 	Color(0, 		255, 	0));
+	inst.fillBox(Rect(0, inst.HEIGHT-50, 25, 50), 	Color(0, 		0, 		255));
+	inst.fillBox(Rect(inst.WIDTH-25, inst.HEIGHT-50, 25, 50),Color(255, 	0, 		255));
 
 	inst.flush();
 	sleep(1);
@@ -36,8 +36,8 @@ int main()
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
 
-		inst.fillBox(rand()%320, rand()%240, rand()%320, rand()%240,
-				rand()%255, rand()%255, rand()%255);
+		inst.fillBox(Rect(rand()%320, rand()%240, rand()%320, rand()%240),
+				Color(rand()%255, rand()%255, rand()%255));
 		inst.flush();
 		sleep(1);
 		//sleep(1);

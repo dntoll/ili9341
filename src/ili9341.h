@@ -4,6 +4,28 @@
 #include <vector>
 
 
+
+class Rect {
+	int x, y, w, h;
+	Rect(int dx, int dy, int dw, int dh) {
+		x = dx;
+		y = dy;
+		w = dw;
+		h = dh;
+
+	}
+};
+
+class Color {
+	unsigned int r, g, b;
+	Rect(unsigned int dr, unsigned int dg, unsigned int db) {
+		r = dr;
+		g = dg;
+		b = db;
+
+	}
+};
+
 class ili9341 {
 
 public:
@@ -15,7 +37,7 @@ public:
 	void flush();
 
 	void setBrightness(unsigned char lightLevel);
-	void fillBox(int x, int y, int width, int height, int r, int g, int b);
+	void fillBox(Rect screen, Color fill);
 	void test();
 
 	static const int WIDTH = 320;
@@ -42,16 +64,7 @@ private:
 	static const int spiSpeed = 32000000;
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 
-	struct Rect {
-		int x, y, w, h;
-		Rect(int dx, int dy, int dw, int dh) {
-			x = dx;
-			y = dy;
-			w = dw;
-			h = dh;
 
-		}
-	};
 
 
 

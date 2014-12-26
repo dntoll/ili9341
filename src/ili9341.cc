@@ -232,12 +232,12 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 	}
 }
 
-void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
+void ili9341::fillBox(Rect screen, Color fill)
 {
 	// rrrrrggggggbbbbb
-	int bch=((r&248)|g>>5);
-	int bcl=((g&28)<<3|b>>3);
-	int color = (bch<<8) | bcl;
+	int bch=((fill.r & 248) | fill.g >> 5); //fill.getHigh();
+	int bcl=((fill.g & 28) << 3 | fill.b >> 3); //fill.getLow();
+	//int color = (bch<<8) | bcl;
 
 
 	int left = WIDTH;
@@ -245,18 +245,20 @@ void ili9341::fillBox(int x, int y, int width, int height, int r, int g, int b)
 	int top = HEIGHT;
 	int bottom = 0;
 
-	for (int dx=0; dx < width && x+dx < WIDTH; dx++) {
-		for (int dy=0; dy < height && y+dy < HEIGHT; dy++) {
-			backBuffer[x+dx][y+dy][0] = (unsigned char) bch;
-			backBuffer[x+dx][y+dy][1] = (unsigned char) bcl;
-			if (x+dx < left)
-				left = x + dx;
-			if (y+dy < top)
-				top = y + dy;
-			if (x+dx > right)
-				right = x + dx;
-			if (y+dy > bottom)
-				bottom = y + dy;
+	for (int dx=0; dx < width && screen.x + dx < WIDTH; dx++) {
+		for (int dy=0; dy < height && screen.y + dy < HEIGHT; dy++) {
+			backBuffer[screen.x + dx][screen.y + dy][0] = (unsigned char) bch;
+			backBuffer[screen.x + dx][screen.y + dy][1] = (unsigned char) bcl;
+
+			//screen.crop(0, 0, WIDTH, HEIGHT)?
+			if (screen.x + dx < left)
+				left = screen.x + dx;
+			if (screen.y + dy < top)
+				top = screen.y + dy;
+			if (screen.x + dx > right)
+				right = screen.x + dx;
+			if (screen.y + dy > bottom)
+				bottom = screen.y + dy;
 		}
 	}
 	
