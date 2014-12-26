@@ -2,7 +2,7 @@
 #include <wiringPiSPI.h>
 #include <wiringPi.h>
 #include <vector>
-#include "rect.h"
+#include "Rect.h"
 
 
 class Color {
