@@ -6,6 +6,7 @@
 
 
 class Rect {
+	public:
 	int x, y, w, h;
 	Rect(int dx, int dy, int dw, int dh) {
 		x = dx;
@@ -17,6 +18,7 @@ class Rect {
 };
 
 class Color {
+public:
 	unsigned int r, g, b;
 	Rect(unsigned int dr, unsigned int dg, unsigned int db) {
 		r = dr;
@@ -63,10 +65,6 @@ private:
 	static const int spiChannel = 0;
 	static const int spiSpeed = 32000000;
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
-
-
-
-
 
 	std::vector<Rect> dirtyRects;
 
