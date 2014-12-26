@@ -1,6 +1,5 @@
 #pragma once
-#include <wiringPiSPI.h>
-#include <wiringPi.h>
+
 #include <vector>
 #include "Rect.h"
 #include "Color.h"
@@ -47,8 +46,6 @@ private:
 	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 
 	std::vector<Rect> dirtyRects;
-
-	//unsigned char frontBuffer[buffersize];
 	unsigned char backBuffer[WIDTH][HEIGHT][2];
 	unsigned char writeBuffer[buffersize];
 	int fileDescriptor;

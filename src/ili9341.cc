@@ -2,7 +2,8 @@
 #include <unistd.h>
 #include <stdio.h>      /* printf, fopen */
 #include <stdlib.h>     /* exit, EXIT_FAILURE */
-
+#include <wiringPiSPI.h>
+#include <wiringPi.h>
 
 Color Color::BLACK = Color(0,0,0);
 
