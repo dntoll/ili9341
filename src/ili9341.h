@@ -27,7 +27,7 @@ public:
 
 	}
 
-	static Color BLACK = Color(0,0,0);
+	static Color BLACK;
 };
 
 class ili9341 {

@@ -3,6 +3,9 @@
 #include <stdio.h>      /* printf, fopen */
 #include <stdlib.h>     /* exit, EXIT_FAILURE */
 
+
+Color Color::BLACK = Color(0,0,0);
+
 ili9341::ili9341() {
 	fileDescriptor = wiringPiSPISetup(spiChannel, spiSpeed);
 	if (fileDescriptor <= -1) {
