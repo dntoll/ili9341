@@ -235,8 +235,8 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 void ili9341::fillBox(Rect screen, Color fill)
 {
 	// rrrrrggggggbbbbb
-	int bch=((fill.r & 248) | fill.g >> 5); //fill.getHigh();
-	int bcl=((fill.g & 28) << 3 | fill.b >> 3); //fill.getLow();
+	unsigned char bch= fill.get16bitHigh();// ((fill.r & 248) | fill.g >> 5); //fill.getHigh();
+	unsigned char bcl= fill.get16bitLow();((fill.g & 28) << 3 | fill.b >> 3); //fill.getLow();
 	//int color = (bch<<8) | bcl;
 
 
@@ -247,8 +247,8 @@ void ili9341::fillBox(Rect screen, Color fill)
 
 	for (int dx=0; dx < screen.width && screen.x + dx < WIDTH; dx++) {
 		for (int dy=0; dy < screen.height && screen.y + dy < HEIGHT; dy++) {
-			backBuffer[screen.x + dx][screen.y + dy][0] = (unsigned char) bch;
-			backBuffer[screen.x + dx][screen.y + dy][1] = (unsigned char) bcl;
+			backBuffer[screen.x + dx][screen.y + dy][0] = bch;
+			backBuffer[screen.x + dx][screen.y + dy][1] = bcl;
 
 			//screen.crop(0, 0, WIDTH, HEIGHT)?
 			if (screen.x + dx < left)
