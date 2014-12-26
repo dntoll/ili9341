@@ -248,8 +248,8 @@ void ili9341::fillBox(Rect screen, Color fill)
 	int top = HEIGHT;
 	int bottom = 0;
 
-	for (int dx=0; dx < width && screen.x + dx < WIDTH; dx++) {
-		for (int dy=0; dy < height && screen.y + dy < HEIGHT; dy++) {
+	for (int dx=0; dx < screen.width && screen.x + dx < WIDTH; dx++) {
+		for (int dy=0; dy < screen.height && screen.y + dy < HEIGHT; dy++) {
 			backBuffer[screen.x + dx][screen.y + dy][0] = (unsigned char) bch;
 			backBuffer[screen.x + dx][screen.y + dy][1] = (unsigned char) bcl;
 
