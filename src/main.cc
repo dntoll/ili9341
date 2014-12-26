@@ -35,11 +35,14 @@ int main()
 	inst.clearScreen();
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
-
+		inst.fillBox(Rect(rand()%320, rand()%240, rand()%320, rand()%240),
+						Color(rand()%255, rand()%255, rand()%255));
+		inst.fillBox(Rect(rand()%320, rand()%240, rand()%320, rand()%240),
+						Color(rand()%255, rand()%255, rand()%255));
 		inst.fillBox(Rect(rand()%320, rand()%240, rand()%320, rand()%240),
 				Color(rand()%255, rand()%255, rand()%255));
 		inst.flush();
-		sleep(1);
+
 		//sleep(1);
 		//cout << "Flushed Some pixels \n";
 	}

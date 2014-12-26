@@ -3,20 +3,10 @@
 #include <wiringPi.h>
 #include <vector>
 #include "Rect.h"
+#include "Color.h"
 
 
-class Color {
-public:
-	unsigned int r, g, b;
-	Color(unsigned int dr, unsigned int dg, unsigned int db) {
-		r = dr;
-		g = dg;
-		b = db;
 
-	}
-
-	static Color BLACK;
-};
 
 class ili9341 {
 
