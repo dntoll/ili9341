@@ -111,7 +111,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 	sleep(1);
 	
 }
-
+/*
 void ili9341::test() {
 
 	int x = 200;
@@ -143,7 +143,7 @@ void ili9341::test() {
 		printf("SPI failed wiringPiSPIDataRW");
 	}
 
-}
+}*/
 
 void BackBuffer::clearScreen() {
 	fillBox(Rect(0, 0, ili9341::WIDTH, ili9341::HEIGHT), Color::BLACK);

@@ -12,7 +12,10 @@ int main()
 	cout << "Started up";
 	pinMode(CE1, OUTPUT);
 	digitalWrite(CE1, 0);
-	ili9341 inst;
+
+
+	ili9341 lcd;
+	BackBuffer inst(lcd);
 
 	inst.setBrightness(255);
 
@@ -25,9 +28,9 @@ int main()
 	
 
 	inst.fillBox(Rect(0, 0, 25, 50), Color(255, 	0, 		0));
-	inst.fillBox(Rect(inst.WIDTH-25, 0, 25, 50), 	Color(0, 		255, 	0));
-	inst.fillBox(Rect(0, inst.HEIGHT-50, 25, 50), 	Color(0, 		0, 		255));
-	inst.fillBox(Rect(inst.WIDTH-25, inst.HEIGHT-50, 25, 50),Color(255, 	0, 		255));
+	inst.fillBox(Rect(lcd.WIDTH-25, 0, 25, 50), 	Color(0, 		255, 	0));
+	inst.fillBox(Rect(0, lcd.HEIGHT-50, 25, 50), 	Color(0, 		0, 		255));
+	inst.fillBox(Rect(lcd.WIDTH-25, lcd.HEIGHT-50, 25, 50),Color(255, 	0, 		255));
 
 	inst.flush();
 	sleep(1);
