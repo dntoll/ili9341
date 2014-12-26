@@ -150,8 +150,8 @@ void ili9341::flush() {
 	for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
-					dirtyRects[i].w,
-					dirtyRects[i].h);
+					dirtyRects[i].width,
+					dirtyRects[i].height);
 	}
 	dirtyRects.clear();
 
