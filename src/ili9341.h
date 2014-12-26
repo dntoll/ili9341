@@ -26,7 +26,7 @@ public:
 	static const int HEIGHT = 240;
 private:
 	void adressSet( int x, int y, int w, int h);
-	void writeToBuffer(Rect rect);
+	void writeToBuffer(const Rect &rect);
 
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);

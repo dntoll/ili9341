@@ -153,7 +153,7 @@ void ili9341::flush() {
 
 
 
-void ili9341::writeToBuffer(Rect pos) {
+void ili9341::writeToBuffer(const Rect &pos) {
 	//copy bb to wb
 	int index = 0;
 
