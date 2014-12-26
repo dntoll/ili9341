@@ -10,12 +10,13 @@ class Color {
 			b = db;
 		}
 
+		// rrrrrggggggbbbbb
 		unsigned char get16bitHigh() {
-			return ((r & 248) | g >> 5); //fill.getHigh();
+			return ((r & 248) | g >> 5);
 		}
-
+		// rrrrrggggggbbbbb
 		unsigned char get16bitLow() {
-			return ((g & 28) << 3 | b >> 3); //fill.getLow();
+			return ((g & 28) << 3 | b >> 3);
 		}
 
 		static Color BLACK;
