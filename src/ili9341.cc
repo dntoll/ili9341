@@ -148,9 +148,7 @@ void ili9341::flush() {
 		writeToBuffer(dirtyRects[i].x,
 					dirtyRects[i].y,
 					dirtyRects[i].w,
-					dirtyRects[i].h,
-					dirtyRects[i].bh,
-					dirtyRects[i].bl);
+					dirtyRects[i].h);
 	}
 	dirtyRects.clear();
 
@@ -167,14 +165,13 @@ void ili9341::flush() {
 
 
 
-void ili9341::writeToBuffer(int x, int y, int width, int height, unsigned char high, unsigned char low) {
-
-	//this one must be called in the wrong order... but why?
-	//adressSet(x, y, height, width);
-	adressSet(y, WIDTH - x -1 -width, height, width);
-
+void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	//copy bb to wb
 	int index = 0;
+
+	//build up write buffer
+	//this is draw order dependent
+	//x is reversed
 	for (int dx=width-1; dx >= 0; dx--) {
 		for (int dy=0; dy < height; dy++) {
 			int to =  index*2;  //two bytes per pixel
@@ -191,7 +188,12 @@ void ili9341::writeToBuffer(int x, int y, int width, int height, unsigned char h
 		}
 	}
 
-	//push buffer
+	//this one must be called in the wrong order, since we use the screen in landscape mode
+	// x <-swap-> y
+	//x is reversed WIDTH - x -1 -width
+	adressSet(y, WIDTH - x -1 -width, height, width);
+
+	//push buffer to screen
 	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
@@ -267,8 +269,8 @@ void ili9341::adressSet( int x, int y, int width, int height)
 	//https://github.com/luckasfb/lcm_drivers/blob/master/alcatel_ot_903d_jrd73_gb/lcm/ili9341/ili9341.c
 	unsigned int x0 = x;
 	unsigned int y0 = y;
-	unsigned int x1 = x0 + width -1;
-	unsigned int y1 = y0 + height -1;
+	unsigned int x1 = x0 + width - 1;
+	unsigned int y1 = y0 + height - 1;
 
 	LCD_Write_COM(0x2a);
 	LCD_Write_DATA(x0 >> 8);
