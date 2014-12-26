@@ -12,20 +12,20 @@ class ili9341 {
 public:
 	ili9341();
 
-	void clearScreen();
+
 
 	//write backbuffer to screen
-	void flush();
+
 
 	void setBrightness(unsigned char lightLevel);
-	void fillBox(const Rect &screen, const Color &fill);
-	void test();
+
+	void adressSet( int x, int y, int w, int h);
+	void writeToBuffer(const Rect &rect, unsigned char writeBuffer[]);
 
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;
 private:
-	void adressSet( int x, int y, int w, int h);
-	void writeToBuffer(const Rect &rect);
+
 
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);
@@ -40,14 +40,25 @@ private:
 	static const unsigned char SCLK = 14;// # gpio pin 23 = wiringpi no. 14 (SCLK BCM 11)
 	static const unsigned char DIN  = 12;// # gpio pin 19 = wiringpi no. 12 (MOSI BCM 10)
 
-
 	static const int spiChannel = 0;
 	static const int spiSpeed = 32000000;
-	static const int buffersize = WIDTH*HEIGHT*2; //two bytes per pixel
 
+
+
+	int fileDescriptor;
+
+};
+
+class BackBuffer {
+public:
+	BackBuffer(ili9341 &lcd);
+	void clearScreen();
+	void fillBox(const Rect &screen, const Color &fill);
+	void flush();
+private:
+	static const int buffersize = ili9341::WIDTH*ili9341::HEIGHT*2; //two bytes per pixel
 	std::vector<Rect> dirtyRects;
 	unsigned char backBuffer[WIDTH][HEIGHT][2];
 	unsigned char writeBuffer[buffersize];
-	int fileDescriptor;
-
+	ili9341 &screen;
 };

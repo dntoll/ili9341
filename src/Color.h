@@ -21,3 +21,5 @@ class Color {
 
 		static Color BLACK;
 };
+
+Color Color::BLACK = Color(0,0,0);

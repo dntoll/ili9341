@@ -5,7 +5,11 @@
 #include <wiringPiSPI.h>
 #include <wiringPi.h>
 
-Color Color::BLACK = Color(0,0,0);
+
+
+BackBuffer::BackBuffer(ili9341 &lcd) : screen(lcd) {
+
+}
 
 ili9341::ili9341() {
 	fileDescriptor = wiringPiSPISetup(spiChannel, spiSpeed);
@@ -141,41 +145,45 @@ void ili9341::test() {
 
 }
 
-void ili9341::clearScreen() {
+void BackBuffer::clearScreen() {
 	fillBox(Rect(0, 0, WIDTH, HEIGHT), Color::BLACK);
 }
 
-void ili9341::flush() {
+void BackBuffer::flush() {
 	for(int i=0; i < dirtyRects.size(); i++) {
-		writeToBuffer(dirtyRects[i]);
+
+
+		//copy bb to wb
+		int index = 0;
+
+		//build up write buffer
+		//this is draw order dependent
+		//x is reversed
+		for (int dx=dirtyRects[i].width-1; dx >= 0; dx--) {
+			for (int dy=0; dy < dirtyRects[i].height; dy++) {
+				int to =  index*2;  //two bytes per pixel
+
+				//here we turn it around since i mounted it wrong
+				int bx = dirtyRects[i].x + dx;
+				int by = dirtyRects[i].y + dy;
+				if (bx >= 0 && bx < WIDTH &&
+					by >= 0 && by < HEIGHT) {
+						writeBuffer[to]   = backBuffer[bx][by][0];
+						writeBuffer[to+1] = backBuffer[bx][by][1];
+				}
+				index++;
+			}
+		}
+
+		screen.writeToBuffer(dirtyRects[i], writeBuffer);
 	}
 	dirtyRects.clear();
 }
 
 
 
-void ili9341::writeToBuffer(const Rect &pos) {
-	//copy bb to wb
-	int index = 0;
+void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 
-	//build up write buffer
-	//this is draw order dependent
-	//x is reversed
-	for (int dx=pos.width-1; dx >= 0; dx--) {
-		for (int dy=0; dy < pos.height; dy++) {
-			int to =  index*2;  //two bytes per pixel
-
-			//here we turn it around since i mounted it wrong
-			int bx = pos.x + dx;
-			int by = pos.y + dy;
-			if (bx >= 0 && bx < WIDTH &&
-				by >= 0 && by < HEIGHT) {
-					writeBuffer[to]   = backBuffer[bx][by][0];
-					writeBuffer[to+1] = backBuffer[bx][by][1];
-			}
-			index++;
-		}
-	}
 
 	//this one must be called in the wrong order, since we use the screen in landscape mode
 	// x <-swap-> y
@@ -221,7 +229,7 @@ void ili9341::LCD_Write_COM(unsigned char com) {
 	}
 }
 
-void ili9341::fillBox(const Rect &screen, const Color &fill)
+void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 {
 
 	unsigned char bch= fill.get16bitHigh();
