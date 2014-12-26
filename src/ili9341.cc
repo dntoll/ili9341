@@ -145,22 +145,10 @@ void ili9341::clearScreen() {
 }
 
 void ili9341::flush() {
-	//writeToBuffer(0, 0, WIDTH, HEIGHT);
-
 	for(int i=0; i < dirtyRects.size(); i++) {
 		writeToBuffer(dirtyRects[i]);
 	}
 	dirtyRects.clear();
-
-
-	//copy to fb
-	/*for (int x=0; x < WIDTH; x++) {
-		for (int y=0; y < HEIGHT; y++) {
-			int i = toIndex(x, y);
-			frontBuffer[i*2] = backBuffer[i*2];
-			frontBuffer[i*2+1] = backBuffer[i*2+1];
-		}
-	}*/
 }
 
 
@@ -244,24 +232,15 @@ void ili9341::fillBox(Rect screen, Color fill)
 	int top = HEIGHT;
 	int bottom = 0;
 
+
 	for (int dx=0; dx < screen.width && screen.x + dx < WIDTH; dx++) {
 		for (int dy=0; dy < screen.height && screen.y + dy < HEIGHT; dy++) {
 			backBuffer[screen.x + dx][screen.y + dy][0] = bch;
 			backBuffer[screen.x + dx][screen.y + dy][1] = bcl;
-
-			//screen.crop(0, 0, WIDTH, HEIGHT)?
-			if (screen.x + dx < left)
-				left = screen.x + dx;
-			if (screen.y + dy < top)
-				top = screen.y + dy;
-			if (screen.x + dx > right)
-				right = screen.x + dx;
-			if (screen.y + dy > bottom)
-				bottom = screen.y + dy;
 		}
 	}
 	
-	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
+	dirtyRects.push_back(screen);
 
 }
 
