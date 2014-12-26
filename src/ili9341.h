@@ -58,7 +58,7 @@ public:
 private:
 	static const int buffersize = ili9341::WIDTH*ili9341::HEIGHT*2; //two bytes per pixel
 	std::vector<Rect> dirtyRects;
-	unsigned char backBuffer[WIDTH][HEIGHT][2];
+	unsigned char backBuffer[ili9341::WIDTH][ili9341::HEIGHT][2];
 	unsigned char writeBuffer[buffersize];
 	ili9341 &screen;
 };
