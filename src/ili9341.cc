@@ -146,7 +146,7 @@ void ili9341::test() {
 }
 
 void BackBuffer::clearScreen() {
-	fillBox(Rect(0, 0, WIDTH, HEIGHT), Color::BLACK);
+	fillBox(Rect(0, 0, ili9341::WIDTH, ili9341::HEIGHT), Color::BLACK);
 }
 
 void BackBuffer::flush() {
@@ -166,8 +166,8 @@ void BackBuffer::flush() {
 				//here we turn it around since i mounted it wrong
 				int bx = dirtyRects[i].x + dx;
 				int by = dirtyRects[i].y + dy;
-				if (bx >= 0 && bx < WIDTH &&
-					by >= 0 && by < HEIGHT) {
+				if (bx >= 0 && bx < ili9341::WIDTH &&
+					by >= 0 && by < ili9341::HEIGHT) {
 						writeBuffer[to]   = backBuffer[bx][by][0];
 						writeBuffer[to+1] = backBuffer[bx][by][1];
 				}
@@ -242,8 +242,8 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 	int bottom = 0;
 
 
-	for (int dx=0; dx < screen.width && screen.x + dx < WIDTH; dx++) {
-		for (int dy=0; dy < screen.height && screen.y + dy < HEIGHT; dy++) {
+	for (int dx=0; dx < screen.width && screen.x + dx < ili9341::WIDTH; dx++) {
+		for (int dy=0; dy < screen.height && screen.y + dy < ili9341::HEIGHT; dy++) {
 			backBuffer[screen.x + dx][screen.y + dy][0] = bch;
 			backBuffer[screen.x + dx][screen.y + dy][1] = bcl;
 

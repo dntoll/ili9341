@@ -21,7 +21,7 @@ int main()
 	sleep(1);
 
 
-	inst.test();
+	//inst.test();
 	
 
 	inst.fillBox(Rect(0, 0, 25, 50), Color(255, 	0, 		0));
