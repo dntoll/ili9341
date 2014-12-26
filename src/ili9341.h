@@ -48,7 +48,7 @@ public:
 	static const int HEIGHT = 240;
 private:
 	void adressSet( int x, int y, int w, int h);
-	void writeToBuffer(int x, int y, int width, int height);
+	void writeToBuffer(Rect rect);
 
 	void LCD_Write_DATA(unsigned char data);
 	void LCD_Write_COM(unsigned char com);

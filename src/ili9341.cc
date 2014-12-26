@@ -148,10 +148,7 @@ void ili9341::flush() {
 	//writeToBuffer(0, 0, WIDTH, HEIGHT);
 
 	for(int i=0; i < dirtyRects.size(); i++) {
-		writeToBuffer(dirtyRects[i].x,
-					dirtyRects[i].y,
-					dirtyRects[i].width,
-					dirtyRects[i].height);
+		writeToBuffer(dirtyRects[i]);
 	}
 	dirtyRects.clear();
 
@@ -168,24 +165,24 @@ void ili9341::flush() {
 
 
 
-void ili9341::writeToBuffer(int x, int y, int width, int height) {
+void ili9341::writeToBuffer(Rect pos) {
 	//copy bb to wb
 	int index = 0;
 
 	//build up write buffer
 	//this is draw order dependent
 	//x is reversed
-	for (int dx=width-1; dx >= 0; dx--) {
-		for (int dy=0; dy < height; dy++) {
+	for (int dx=pos.width-1; dx >= 0; dx--) {
+		for (int dy=0; dy < pos.height; dy++) {
 			int to =  index*2;  //two bytes per pixel
 
 			//here we turn it around since i mounted it wrong
-			int bx = x + dx;
-			int by = y + dy;
+			int bx = pos.x + dx;
+			int by = pos.y + dy;
 			if (bx >= 0 && bx < WIDTH &&
 				by >= 0 && by < HEIGHT) {
-					writeBuffer[to]   = backBuffer[bx][y + dy][0];
-					writeBuffer[to+1] = backBuffer[bx][y + dy][1];
+					writeBuffer[to]   = backBuffer[bx][by][0];
+					writeBuffer[to+1] = backBuffer[bx][by][1];
 			}
 			index++;
 		}
@@ -194,13 +191,13 @@ void ili9341::writeToBuffer(int x, int y, int width, int height) {
 	//this one must be called in the wrong order, since we use the screen in landscape mode
 	// x <-swap-> y
 	//x is reversed WIDTH - x -1 -width
-	adressSet(y, WIDTH - x -1 -width, height, width);
+	adressSet(pos.y, WIDTH - pos.x -1 -pos.width, pos.height, pos.width);
 
 	//push buffer to screen
 	digitalWrite(DC, 1);
 
 	int maxWriteSize = 2048;
-	int bytesToWrites = width * height * 2;
+	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 
 	for (int i = 0; i< numIterations; i++) {
