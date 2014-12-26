@@ -138,7 +138,7 @@ void ili9341::test() {
 }
 
 void ili9341::clearScreen() {
-	fillBox(0, 0, WIDTH, HEIGHT, 0, 0, 0);
+	fillBox(Rect(0, 0, WIDTH, HEIGHT), Color::BLACK);
 }
 
 void ili9341::flush() {

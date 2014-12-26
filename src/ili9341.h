@@ -26,6 +26,8 @@ public:
 		b = db;
 
 	}
+
+	static Color BLACK = Color(0,0,0);
 };
 
 class ili9341 {
