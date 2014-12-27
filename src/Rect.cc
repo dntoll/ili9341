@@ -10,7 +10,7 @@ Rect::Rect(int dx, int dy, int dw, int dh) {
 }
 
 
-Rect crop(int minX, int minY, int maxX, int maxY) const {
+Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
 	int dx = x < minX ? minX : x;
 	int dy = y < minY ? minY : y;
 
