@@ -18,7 +18,7 @@ void BackBuffer::flush() {
 		//build up write buffer
 		//this is draw order dependent
 		//x is reversed
-		for (int dx=dirtyRects[i].width-1; dx >= 0; dx--) {
+		for (int dx=dirtyRects[i].width; dx >= 0; dx--) {
 			for (int dy=0; dy < dirtyRects[i].height; dy++) {
 
 				int to =  index*2;  //two bytes per pixel
