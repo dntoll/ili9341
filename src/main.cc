@@ -29,14 +29,14 @@ int main()
 	//inst.test();
 	
 
-	/*inst.fillBox(Rect(0, 0, 25, 50), Color(255, 	0, 		0));
+	inst.fillBox(Rect(0, 0, 25, 50), Color(255, 	0, 		0));
 	inst.fillBox(Rect(lcd.WIDTH-25, 0, 25, 50), 	Color(0, 		255, 	0));
 	inst.fillBox(Rect(0, lcd.HEIGHT-50, 25, 50), 	Color(0, 		0, 		255));
 	inst.fillBox(Rect(lcd.WIDTH-25, lcd.HEIGHT-50, 25, 50),Color(255, 	0, 		255));
 
 	inst.flush();
 	sleep(1);
-	cout << "Before \n";
+	/*cout << "Before \n";
 	inst.clearScreen();
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
