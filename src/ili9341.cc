@@ -123,7 +123,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	//push buffer to screen
 	digitalWrite(DC, 1);
 
-	int maxWriteSize = 2048;
+	int maxWriteSize = 1024;
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
