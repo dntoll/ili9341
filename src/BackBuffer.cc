@@ -11,7 +11,7 @@ void BackBuffer::clearScreen() {
 void BackBuffer::flush() {
 
 	for(int i=0; i < dirtyRects.size(); i++) {
-		return;
+
 		//copy bb to wb
 		int index = 0;
 
@@ -20,6 +20,7 @@ void BackBuffer::flush() {
 		//x is reversed
 		for (int dx=dirtyRects[i].width-1; dx >= 0; dx--) {
 			for (int dy=0; dy < dirtyRects[i].height; dy++) {
+				return;
 				int to =  index*2;  //two bytes per pixel
 
 				//here we turn it around since i mounted it wrong
