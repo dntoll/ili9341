@@ -1,5 +1,8 @@
 #include "BackBuffer.h"
+#include <iostream>
 
+
+using namespace std;
 BackBuffer::BackBuffer(ili9341 &lcd) : screen(lcd) {
 
 }
