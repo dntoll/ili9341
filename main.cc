@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include "obj/BackBuffer.h"
+#include "src/BackBuffer.h"
 #include <wiringPi.h>
 
 using namespace std;
