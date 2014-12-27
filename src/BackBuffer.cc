@@ -18,7 +18,7 @@ void BackBuffer::flush() {
 		//build up write buffer
 		//this is draw order dependent
 		//x is reversed
-		for (int dx=dirtyRects[i].width; dx >= 0; dx--) {
+		for (int dx=dirtyRects[i].width-1; dx >= 0; dx--) {
 			for (int dy=0; dy < dirtyRects[i].height; dy++) {
 
 				int to =  index*2;  //two bytes per pixel
@@ -46,7 +46,7 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 	unsigned char bch= fill.get16bitHigh();
 	unsigned char bcl= fill.get16bitLow();
 
-	Rect onScreen = screen.crop(0,0, ili9341::WIDTH-1, ili9341::HEIGHT);
+	Rect onScreen = screen.crop(0,0, ili9341::WIDTH, ili9341::HEIGHT);
 
 	for (int dx=onScreen.x; dx < onScreen.x + onScreen.width; dx++) {
 		for (int dy=onScreen.y; dy < onScreen.y + onScreen.height; dy++) {
