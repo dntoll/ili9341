@@ -1,5 +1,8 @@
 #include "Rect.h"
+#include <iostream>
 
+
+using namespace std;
 
 Rect::Rect(int dx, int dy, int dw, int dh) {
 	x = dx;
@@ -22,6 +25,9 @@ Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
 
 	dw = dw + x > maxX ? maxX-dx-1 : dw;
 	dh = dh + y > maxY ? maxY-dy-1 : dh;
+
+	cout << "Rect::crop    " << x << " " << y << " " << width << " " << height << " " << endl;
+	cout << "Rect::cropped " << dx << " " << dy << " " << dw << " " << dh << " " << endl;
 
 	return Rect(dx, dy, dw, dh);
 }
