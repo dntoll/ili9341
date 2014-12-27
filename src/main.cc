@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include "ili9341.h"
+#include "BackBuffer.h"
 #include <wiringPi.h>
 
 using namespace std;
