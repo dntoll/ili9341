@@ -54,6 +54,6 @@ int main()
 
 	sleep(3);
 
-	lcd.setBrightness(0);*/
+	lcd.setBrightness(0);
 	return 0;
 }
