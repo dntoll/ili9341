@@ -118,7 +118,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	//this one must be called in the wrong order, since we use the screen in landscape mode
 	// x <-swap-> y
 	//x is reversed WIDTH - x -1 -width
-	adressSet(pos.y, WIDTH - pos.x -1 -pos.width, pos.height, pos.width);
+	adressSet(pos.y, WIDTH - pos.x -pos.width, pos.height, pos.width);
 
 	//push buffer to screen
 	digitalWrite(DC, 1);
@@ -137,14 +137,14 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	}
 
 
-	/*int leftovers = bytesToWrites % maxWriteSize;
+	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("SPI failed wiringPiSPIDataRW");
 	} else {
-		cout << "wrote leftovers " << leftovers << endl;
+		//cout << "wrote leftovers " << leftovers << endl;
 	}
-*/
+
 
 }
 
