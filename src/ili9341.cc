@@ -127,6 +127,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 
+	cout << "bytesToWrites "  << bytesToWrites << endl;
 
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = writeBuffer;
