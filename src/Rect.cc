@@ -23,8 +23,8 @@ Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
 	int dw = width + x < minX ? 0 : width;
 	int dh = height + x < minY ? 0 : height;
 
-	dw = dw + x > maxX ? maxX-dx-1 : dw;
-	dh = dh + y > maxY ? maxY-dy-1 : dh;
+	dw = dw + x > maxX ? maxX-dx : dw;
+	dh = dh + y > maxY ? maxY-dy : dh;
 
 	cout << "Rect::crop    " << x << " " << y << " " << width << " " << height << " " << endl;
 	cout << "Rect::cropped " << dx << " " << dy << " " << dw << " " << dh << " " << endl;
