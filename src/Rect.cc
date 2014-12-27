@@ -14,14 +14,14 @@ Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
 	int dx = x < minX ? minX : x;
 	int dy = y < minY ? minY : y;
 
-	dx = x > maxX ? maxX : x;
-	dy = y > maxY ? maxY : y;
+	dx = dx > maxX ? maxX : dx;
+	dy = dy > maxY ? maxY : dy;
 
 	int dw = width + x < minX ? 0 : width;
 	int dh = height + x < minY ? 0 : height;
 
-	dw = dw + x > maxX ? maxX-width : dw;
-	dh = dh + x > maxY ? maxY-height : dh;
+	dw = dw + x > maxX ? maxX-dx-1 : dw;
+	dh = dh + y > maxY ? maxY-dy-1 : dh;
 
 	return Rect(dx, dy, dw, dh);
 }
