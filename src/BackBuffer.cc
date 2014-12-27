@@ -36,7 +36,7 @@ void BackBuffer::flush() {
 		}
 
 		screen.writeToBuffer(dirtyRects[i], writeBuffer);
-		return;
+
 	}
 	dirtyRects.clear();
 }
