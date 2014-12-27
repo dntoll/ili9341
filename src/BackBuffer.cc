@@ -9,8 +9,9 @@ void BackBuffer::clearScreen() {
 }
 
 void BackBuffer::flush() {
-	return;
+
 	for(int i=0; i < dirtyRects.size(); i++) {
+		return;
 		//copy bb to wb
 		int index = 0;
 
