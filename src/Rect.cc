@@ -48,8 +48,8 @@ Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
 		dh = maxY - dy;
 	}
 
-	cout << "Rect::crop    " << x << " " << y << " " << width << " " << height << " " << endl;
-	cout << "Rect::cropped " << dx << " " << dy << " " << dw << " " << dh << " " << endl;
+	//cout << "Rect::crop    " << x << " " << y << " " << width << " " << height << " " << endl;
+	//cout << "Rect::cropped " << dx << " " << dy << " " << dw << " " << dh << " " << endl;
 
 	return Rect(dx, dy, dw, dh);
 }
