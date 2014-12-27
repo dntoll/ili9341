@@ -128,9 +128,9 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
 
-	cout << "bytesToWrites "  << bytesToWrites << endl;
+	/*cout << "bytesToWrites "  << bytesToWrites << endl;
 	cout << "numIterations " << numIterations << endl;
-	cout << "leftovers " << leftovers << endl;
+	cout << "leftovers " << leftovers << endl;*/
 
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = writeBuffer;
@@ -149,9 +149,9 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 		//cout << "wrote leftovers " << leftovers << endl;
 	}
 
-	cout << "leftovers " << leftovers << endl;
+	/*cout << "leftovers " << leftovers << endl;
 
-	cout << "wrote "  << numIterations * maxWriteSize +  leftovers << endl;
+	cout << "wrote "  << numIterations * maxWriteSize +  leftovers << endl;*/
 }
 
 void ili9341::LCD_Write_DATA(unsigned char data) {
