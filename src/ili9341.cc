@@ -129,7 +129,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 
 
 	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = (unsigned char *)&writeBuffer;
+		unsigned char *p = writeBuffer;
 
 		cout << "write wiringPiSPIDataRW ";
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
