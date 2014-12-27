@@ -14,12 +14,12 @@ int main()
 	digitalWrite(CE1, 0);
 
 
-	/*ili9341 lcd;
+	ili9341 lcd;
 	BackBuffer inst(lcd);
 
 	lcd.setBrightness(255);
 
-	inst.clearScreen();
+	/*inst.clearScreen();
 	inst.flush();
 	sleep(1);
 
