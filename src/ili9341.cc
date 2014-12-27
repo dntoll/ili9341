@@ -132,9 +132,9 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
-
+		return;
 	}
-	return;
+
 
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
