@@ -149,7 +149,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 		//cout << "wrote leftovers " << leftovers << endl;
 	}
 
-
+	cout << "leftovers " << leftovers << endl;
 
 	cout << "wrote "  << numIterations * maxWriteSize +  leftovers << endl;
 }
