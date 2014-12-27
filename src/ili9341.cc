@@ -113,7 +113,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 
 void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 
-	return;
+
 	//this one must be called in the wrong order, since we use the screen in landscape mode
 	// x <-swap-> y
 	//x is reversed WIDTH - x -1 -width
@@ -126,6 +126,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 
+	return;
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = (unsigned char *)&writeBuffer;
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
