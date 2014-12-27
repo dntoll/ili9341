@@ -46,7 +46,7 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 	unsigned char bch= fill.get16bitHigh();
 	unsigned char bcl= fill.get16bitLow();
 
-	Rect onScreen = screen.crop(0,0, ili9341::WIDTH, ili9341::HEIGHT);
+	Rect onScreen = screen.crop(0,0, ili9341::WIDTH-1, ili9341::HEIGHT);
 
 	for (int dx=onScreen.x; dx < onScreen.x + onScreen.width; dx++) {
 		for (int dy=onScreen.y; dy < onScreen.y + onScreen.height; dy++) {
