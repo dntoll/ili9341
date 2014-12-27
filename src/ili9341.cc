@@ -126,7 +126,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 
-	return;
+
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = (unsigned char *)&writeBuffer;
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
@@ -134,6 +134,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 		}
 
 	}
+	return;
 
 	int leftovers = bytesToWrites % maxWriteSize;
 	unsigned char *p = (unsigned char *)&writeBuffer;
