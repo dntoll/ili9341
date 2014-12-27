@@ -111,7 +111,7 @@ void ili9341::setBrightness(unsigned char led_value) {
 }
 
 
-void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
+void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 
 
 	//this one must be called in the wrong order, since we use the screen in landscape mode
@@ -132,7 +132,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char writeBuffer[]) {
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
-		return;
+
 	}
 
 

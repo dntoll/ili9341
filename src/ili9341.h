@@ -9,15 +9,10 @@ class ili9341 {
 public:
 	ili9341();
 
-
-
-	//write backbuffer to screen
-
-
 	void setBrightness(unsigned char lightLevel);
 
 	void adressSet( int x, int y, int w, int h);
-	void writeToBuffer(const Rect &rect, unsigned char writeBuffer[]);
+	void writeToBuffer(const Rect &rect, unsigned char *writeBuffer);
 
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;
