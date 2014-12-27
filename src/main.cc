@@ -34,7 +34,7 @@ int main()
 	inst.fillBox(Rect(0, lcd.HEIGHT-50, 25, 50), 	Color(0, 		0, 		255));
 	inst.fillBox(Rect(lcd.WIDTH-25, lcd.HEIGHT-50, 25, 50),Color(255, 	0, 		255));
 
-	inst.flush();
+	/*inst.flush();
 	sleep(1);
 	cout << "Before \n";
 	inst.clearScreen();
@@ -54,6 +54,6 @@ int main()
 
 	sleep(3);
 
-	lcd.setBrightness(0);
+	lcd.setBrightness(0);*/
 	return 0;
 }
