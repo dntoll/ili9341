@@ -6,7 +6,7 @@ all: ili9341
 
 
 ili9341: $(OBJ_FILES)
-	g++ -g -lwiringPi -lrt -o $@ $^ 
+	g++ -g -lwiringPi -o $@ $^ 
 	
 obj/%.o: src/%.cc
 	g++ -g $(CC_FLAGS) -c -o $@ $<
@@ -15,7 +15,7 @@ obj/%.o: src/%.cc
 #	g++ src/main.cc src/ili9341.cc -o ili9341  -lwiringPi
 
 clean: 
-	rm *.o ili9341
+	rm obj/*.o ili9341
 
 reload:
 	git pull
