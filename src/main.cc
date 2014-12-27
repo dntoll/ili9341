@@ -19,8 +19,8 @@ int main()
 
 	lcd.setBrightness(255);
 
-	inst.clearScreen();
-	inst.flush();
+	/*inst.clearScreen();
+	inst.flush();*/
 	sleep(1);
 
 
