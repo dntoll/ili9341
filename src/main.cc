@@ -10,7 +10,7 @@ const int CE1 = 11;
 int main()
 {
 	cout << "Started up";
-	pinMode(CE1, OUTPUT);
+	/*pinMode(CE1, OUTPUT);
 	digitalWrite(CE1, 0);
 
 
@@ -52,6 +52,6 @@ int main()
 
 	sleep(3);
 
-	lcd.setBrightness(0);
+	lcd.setBrightness(0);*/
 	return 0;
 }
