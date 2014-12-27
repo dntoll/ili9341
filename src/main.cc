@@ -36,7 +36,7 @@ int main()
 
 	inst.flush();
 	sleep(1);
-	/*cout << "Before \n";
+	cout << "Before \n";
 	inst.clearScreen();
 	for (int i= 0;i< 60; i++) {
 		//cout << "Write Some pixels \n";
