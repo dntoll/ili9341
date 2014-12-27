@@ -10,11 +10,11 @@ const int CE1 = 11;
 int main()
 {
 	cout << "Started up";
-	/*pinMode(CE1, OUTPUT);
+	pinMode(CE1, OUTPUT);
 	digitalWrite(CE1, 0);
 
 
-	ili9341 lcd;
+	/*ili9341 lcd;
 	BackBuffer inst(lcd);
 
 	lcd.setBrightness(255);
