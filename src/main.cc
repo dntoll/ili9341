@@ -9,7 +9,7 @@ const int CE1 = 11;
 
 int main()
 {
-	cout << "Started up";
+	cout << "Started up" << endl;
 	pinMode(CE1, OUTPUT);
 	digitalWrite(CE1, 0);
 
@@ -20,7 +20,9 @@ int main()
 	lcd.setBrightness(255);
 
 	inst.clearScreen();
-	/*inst.flush();*/
+	cout << "Before flush" << endl;
+	inst.flush();
+	cout << "After flush" << endl;
 	sleep(1);
 
 
