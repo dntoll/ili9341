@@ -38,7 +38,7 @@ void BackBuffer::flush() {
 			}
 		}
 
-		cout << "index " << index << endl;
+		//cout << "index " << index << endl;
 		screen.writeToBuffer(dirtyRects[i], writeBuffer);
 
 	}
