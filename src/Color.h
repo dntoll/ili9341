@@ -10,6 +10,7 @@ class Color {
 		unsigned char get16bitLow() const;
 
 		static Color BLACK;
+		static Color WHITE;
 };
 
 

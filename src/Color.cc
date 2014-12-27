@@ -1,6 +1,8 @@
 #include "Color.h"
 
 Color Color::BLACK = Color(0,0,0);
+Color Color::WHITE = Color(255,255,255);
+
 
 
 Color::Color(unsigned int dr, unsigned int dg, unsigned int db) {
