@@ -126,8 +126,11 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	int maxWriteSize = 2048;
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
+	int leftovers = bytesToWrites % maxWriteSize;
 
 	cout << "bytesToWrites "  << bytesToWrites << endl;
+	cout << "numIterations " << numIterations << endl;
+	cout << "leftovers " << leftovers << endl;
 
 	for (int i = 0; i< numIterations; i++) {
 		unsigned char *p = writeBuffer;
@@ -136,9 +139,9 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 		}
 
 	}
-	cout << "numIterations " << numIterations << endl;
 
-	int leftovers = bytesToWrites % maxWriteSize;
+
+
 	unsigned char *p = (unsigned char *)&writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("SPI failed wiringPiSPIDataRW");
@@ -146,7 +149,7 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 		//cout << "wrote leftovers " << leftovers << endl;
 	}
 
-	cout << "leftovers " << leftovers << endl;
+
 
 	cout << "wrote "  << numIterations * maxWriteSize +  leftovers << endl;
 }
