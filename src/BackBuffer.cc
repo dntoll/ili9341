@@ -75,6 +75,12 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 	right = right >= ili9341::WIDTH ? ili9341::WIDTH -1 : right;
 	top = top >= ili9341::HEIGHT ? ili9341::HEIGHT -1 : top;
 
+	left = left >= ili9341::WIDTH ? ili9341::WIDTH -1 : left;
+	bottom = bottom >= ili9341::HEIGHT ? ili9341::HEIGHT -1 : bottom;
+
+	left = left < 0 ? 0 : left;
+	bottom = bottom < 0 ? 0 : bottom;
+
 	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
 
 }
