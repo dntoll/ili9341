@@ -14,17 +14,39 @@ Rect::Rect(int dx, int dy, int dw, int dh) {
 
 
 Rect Rect::crop(int minX, int minY, int maxX, int maxY) const {
-	int dx = x < minX ? minX : x;
-	int dy = y < minY ? minY : y;
+	int dx = x;
+	int dy = y;
+	int dw = width;
+	int dh = height;
 
-	dx = dx > maxX ? maxX : dx;
-	dy = dy > maxY ? maxY : dy;
+	if (dx < minX) {
+		dx = minX;
+		dw = dw - (minX - x);
+		if (dx + dw < minX) {
+			dw = 0;
+		}
+	} else if (dx > maxX) {
+		dx = maxX;
+		dw = 0;
+	}
+	if (dx + dw > maxX) {
+		dw = maxX - dx;
+	}
 
-	int dw = width + x < minX ? 0 : width;
-	int dh = height + x < minY ? 0 : height;
+	if (dy < minY) {
+		dy = minY;
+		dh = dh - (minY - y);
 
-	dw = dw + x > maxX ? maxX-dx : dw;
-	dh = dh + y > maxY ? maxY-dy : dh;
+		if (dy + dh < minY) {
+			dh = 0;
+		}
+	} else if (dy > maxY) {
+		dy = maxY;
+		dh = 0;
+	}
+	if (dy + dh > maxY) {
+		dh = maxY - dy;
+	}
 
 	cout << "Rect::crop    " << x << " " << y << " " << width << " " << height << " " << endl;
 	cout << "Rect::cropped " << dx << " " << dy << " " << dw << " " << dh << " " << endl;
