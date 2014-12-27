@@ -43,44 +43,18 @@ void BackBuffer::flush() {
 
 void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 {
-
 	unsigned char bch= fill.get16bitHigh();
 	unsigned char bcl= fill.get16bitLow();
 
+	Rect onScreen = screen.crop(0,0, ili9341::WIDTH-1, ili9341::HEIGHT-1);
 
-	int left = ili9341::WIDTH;
-	int right = 0;
-	int top = ili9341::HEIGHT;
-	int bottom = 0;
-
-
-	for (int dx=0; dx < screen.width && screen.x + dx < ili9341::WIDTH; dx++) {
-		for (int dy=0; dy < screen.height && screen.y + dy < ili9341::HEIGHT; dy++) {
-			backBuffer[screen.x + dx][screen.y + dy][0] = bch;
-			backBuffer[screen.x + dx][screen.y + dy][1] = bcl;
-
-			//screen.crop(0, 0, WIDTH, HEIGHT)?
-			if (screen.x + dx < left)
-				left = screen.x + dx;
-			if (screen.y + dy < top)
-				top = screen.y + dy;
-			if (screen.x + dx > right)
-				right = screen.x + dx;
-			if (screen.y + dy > bottom)
-				bottom = screen.y + dy;
+	for (int dx=onScreen.x; dx < onScreen.width; dx++) {
+		for (int dy=onScreen.y; dy < onScreen.height; dy++) {
+			backBuffer[dx][dy][0] = bch;
+			backBuffer[dx][dy][1] = bcl;
 		}
 	}
 
-
-	right = right >= ili9341::WIDTH ? ili9341::WIDTH -1 : right;
-	top = top >= ili9341::HEIGHT ? ili9341::HEIGHT -1 : top;
-
-	left = left >= ili9341::WIDTH ? ili9341::WIDTH -1 : left;
-	bottom = bottom >= ili9341::HEIGHT ? ili9341::HEIGHT -1 : bottom;
-
-	left = left < 0 ? 0 : left;
-	bottom = bottom < 0 ? 0 : bottom;
-
-	dirtyRects.push_back(Rect(left, top, right - left, bottom - top));
+	dirtyRects.push_back(onScreen);
 
 }
