@@ -38,8 +38,8 @@ int main()
 
 	inst.fillBox(Rect(-25, 50, 50, 50), Color::WHITE);
 	inst.fillBox(Rect(lcd.WIDTH-25, 50, 50, 50), Color::WHITE);
-	inst.fillBox(Rect(lcd.WIDTH/2, -25, 50, 50), Color::WHITE);
-	inst.fillBox(Rect(lcd.WIDTH/2, lcd.HEIGHT-25, 50, 50), Color::WHITE);
+	inst.fillBox(Rect(lcd.WIDTH/2-25, -25, 50, 50), Color::WHITE);
+	inst.fillBox(Rect(lcd.WIDTH/2-25, lcd.HEIGHT-25, 50, 50), Color::WHITE);
 
 	inst.flush();
 	sleep(1);
