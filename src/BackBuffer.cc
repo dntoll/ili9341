@@ -20,7 +20,7 @@ void BackBuffer::flush() {
 		//x is reversed
 		for (int dx=dirtyRects[i].width-1; dx >= 0; dx--) {
 			for (int dy=0; dy < dirtyRects[i].height; dy++) {
-				return;
+
 				int to =  index*2;  //two bytes per pixel
 
 				//here we turn it around since i mounted it wrong
@@ -34,7 +34,7 @@ void BackBuffer::flush() {
 				index++;
 			}
 		}
-
+		return;
 		screen.writeToBuffer(dirtyRects[i], writeBuffer);
 	}
 	dirtyRects.clear();
