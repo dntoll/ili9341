@@ -60,7 +60,12 @@ int main()
 	}
 
 	sleep(3);
+	cout << "Sleep" << endl;
 
+	lcd.shutdown();
+	sleep(3);
+	cout << "no brightp" << endl;
 	lcd.setBrightness(0);
+
 	return 0;
 }

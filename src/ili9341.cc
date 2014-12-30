@@ -111,6 +111,12 @@ void ili9341::setBrightness(unsigned char led_value) {
 	
 }
 
+void ili9341::shutdown() {
+	//https://github.com/fernando-rodriguez/lglib/blob/db2e2cad07264b8fce224d15fd5080675fbc4c89/ili9341/ili9341.c
+	LCD_Write_COM(0x10); //ENTER SLEEP MODE
+	LCD_Write_COM(0x28); //DISPLAY OFF
+}
+
 
 void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 

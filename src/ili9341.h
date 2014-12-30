@@ -13,7 +13,7 @@ public:
 
 	void adressSet( int x, int y, int w, int h);
 	void writeToBuffer(const Rect &rect, unsigned char *writeBuffer);
-
+	void shutdown();
 	static const int WIDTH = 320;
 	static const int HEIGHT = 240;
 private:
