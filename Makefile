@@ -23,4 +23,4 @@ clean:
 reload:
 	git pull
 	make
-	sudo ./ili9341
+	#sudo ./ili9341
