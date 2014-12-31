@@ -12,6 +12,8 @@ void BackBuffer::clearScreen() {
 }
 
 void BackBuffer::flush() {
+	dirtyRects.clear();
+	dirtyRects.push_back(Rect(0,0,ili9341::WIDTH, ili9341::HEIGHT));
 
 	for(int i=0; i < dirtyRects.size(); i++) {
 
