@@ -4,7 +4,8 @@
 
 using namespace std;
 BackBuffer::BackBuffer(ili9341 &lcd) : screen(lcd) {
-
+	for (int i = 0;i< buffersize; i++)
+		writeBuffer[i] = 0;
 }
 
 void BackBuffer::clearScreen() {
