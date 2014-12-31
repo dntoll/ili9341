@@ -119,8 +119,6 @@ void ili9341::shutdown() {
 
 
 void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
-
-
 	//this one must be called in the wrong order, since we use the screen in landscape mode
 	// x <-swap-> y
 	//x is reversed WIDTH - x -1 -width
@@ -133,31 +131,17 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
-
-	/*cout << "bytesToWrites "  << bytesToWrites << endl;
-	cout << "numIterations " << numIterations << endl;
-	cout << "leftovers " << leftovers << endl;*/
+	unsigned char *p = writeBuffer;
 
 	for (int i = 0; i< numIterations; i++) {
-		unsigned char *p = writeBuffer;
 		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
-
 	}
 
-
-
-	unsigned char *p = (unsigned char *)writeBuffer;
 	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("SPI failed wiringPiSPIDataRW");
-	} else {
-		//cout << "wrote leftovers " << leftovers << endl;
 	}
-
-	/*cout << "leftovers " << leftovers << endl;
-
-	cout << "wrote "  << numIterations * maxWriteSize +  leftovers << endl;*/
 }
 
 void ili9341::LCD_Write_DATA(unsigned char data) {
