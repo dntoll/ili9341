@@ -35,3 +35,11 @@ http://wiringpi.com/reference/spi-library/
 	git clone git://git.drogon.net/wiringPi
 	cd wiringPi
 	./build
+	
+	
+Commands
+--------
+	gpio load spi
+	cd ili9341
+	make
+	sudo ./ili9341
