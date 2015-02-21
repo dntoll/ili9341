@@ -117,6 +117,37 @@ void ili9341::shutdown() {
 	LCD_Write_COM(0x28); //DISPLAY OFF
 }
 
+void ili9341::test() {
+	int width = 20;
+	int height = 10;
+	adressSet(10, 01, width, height);
+	int buffersize = width*height*2;
+	unsigned char *writeBuffer = new unsigned char[buffersize];
+	for (int i = 0; i< buffersize; i++)
+		writeBuffer[i] = 0;
+
+	//push buffer to screen
+	digitalWrite(DC, 1);
+
+	int maxWriteSize = 1024;
+	int bytesToWrites = width * height * 2;
+	int numIterations = bytesToWrites / maxWriteSize;
+	int leftovers = bytesToWrites % maxWriteSize;
+
+
+	for (int i = 0; i< numIterations; i++) {
+
+		if (wiringPiSPIDataRW(spiChannel, writeBuffer + i * maxWriteSize, maxWriteSize) == -1) {
+			printf("SPI failed wiringPiSPIDataRW");
+		}
+	}
+
+	if (wiringPiSPIDataRW(spiChannel, writeBuffer + numIterations * maxWriteSize, leftovers) == -1) {
+		printf("SPI failed wiringPiSPIDataRW");
+	}
+
+	delete[] writeBuffer;
+}
 
 void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	//this one must be called in the wrong order, since we use the screen in landscape mode
@@ -127,19 +158,20 @@ void ili9341::writeToBuffer(const Rect &pos, unsigned char *writeBuffer) {
 	//push buffer to screen
 	digitalWrite(DC, 1);
 
-	int maxWriteSize = 1024;
+	int maxWriteSize = 2048;
 	int bytesToWrites = pos.width * pos.height * 2;
 	int numIterations = bytesToWrites / maxWriteSize;
 	int leftovers = bytesToWrites % maxWriteSize;
-	unsigned char *p = writeBuffer;
+
 
 	for (int i = 0; i< numIterations; i++) {
-		if (wiringPiSPIDataRW(spiChannel, p + i * maxWriteSize, maxWriteSize) == -1) {
+
+		if (wiringPiSPIDataRW(spiChannel, writeBuffer + i * maxWriteSize, maxWriteSize) == -1) {
 			printf("SPI failed wiringPiSPIDataRW");
 		}
 	}
 
-	if (wiringPiSPIDataRW(spiChannel, p + numIterations * maxWriteSize, leftovers) == -1) {
+	if (wiringPiSPIDataRW(spiChannel, writeBuffer + numIterations * maxWriteSize, leftovers) == -1) {
 		printf("SPI failed wiringPiSPIDataRW");
 	}
 }

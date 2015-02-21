@@ -8,7 +8,7 @@ class ili9341 {
 
 public:
 	ili9341();
-
+	void test();
 	void setBrightness(unsigned char lightLevel);
 
 	void adressSet( int x, int y, int w, int h);

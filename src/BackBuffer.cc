@@ -20,7 +20,7 @@ void BackBuffer::flush() {
 
 		//copy bb to wb
 		int index = 0;
-
+		
 		//build up write buffer
 		//this is draw order dependent
 		//x is reversed
@@ -41,10 +41,11 @@ void BackBuffer::flush() {
 			}
 		}
 
-		//cout << "index " << index << endl;
+		
 		screen.writeToBuffer(dirtyRects[i], writeBuffer);
-
 	}
+	
+	cout << "drew " << dirtyRects.size() << endl;
 	dirtyRects.clear();
 }
 
@@ -62,6 +63,12 @@ void BackBuffer::fillBox(const Rect &screen, const Color &fill)
 		}
 	}
 
-	dirtyRects.push_back(onScreen);
+	for (int i = 0; i < dirtyRects.size(); i++) {
+		if (dirtyRects[i].intersect(onScreen)) {
+			dirtyRects[i].merge(onScreen);
+			return;
+		}
+	}
 
+	dirtyRects.push_back(onScreen);
 }

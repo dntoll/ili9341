@@ -21,6 +21,6 @@ clean:
 	rm obj/*.o ili9341
 
 reload:
-	git pull
+	#git pull
 	make
-	#sudo ./ili9341
+	sudo ./ili9341
